@@ -1,0 +1,36 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ "main", "master", "zh_CN" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+
+    - name: Restore NuGet Packages
+      run: nuget restore CFixer.sln
+
+    - name: Build Solution
+      run: msbuild CFixer.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: CrapFixer-Release
+        path: |
+          **/bin/Release/*.exe
+          **/bin/Release/*.dll
