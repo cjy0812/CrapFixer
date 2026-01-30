@@ -62,7 +62,7 @@
             this.btnViveMenu.Name = "btnViveMenu";
             this.btnViveMenu.Size = new System.Drawing.Size(100, 32);
             this.btnViveMenu.TabIndex = 248;
-            this.btnViveMenu.Text = "Features ";
+            this.btnViveMenu.Text = Properties.Resources.ResourceManager.GetString("OptionsView.btnViveMenu.Text");
             this.btnViveMenu.UseVisualStyleBackColor = false;
             this.btnViveMenu.Click += new System.EventHandler(this.btnViveMenu_Click);
             // 
@@ -77,7 +77,7 @@
             this.btnPluginsMenu.Name = "btnPluginsMenu";
             this.btnPluginsMenu.Size = new System.Drawing.Size(100, 32);
             this.btnPluginsMenu.TabIndex = 247;
-            this.btnPluginsMenu.Text = "Plugins";
+            this.btnPluginsMenu.Text = Properties.Resources.ResourceManager.GetString("OptionsView.btnPluginsMenu.Text");
             this.btnPluginsMenu.UseVisualStyleBackColor = false;
             this.btnPluginsMenu.Click += new System.EventHandler(this.btnPluginsMenu_Click);
             // 
@@ -105,7 +105,7 @@
             this.btnAboutMenu.Name = "btnAboutMenu";
             this.btnAboutMenu.Size = new System.Drawing.Size(100, 32);
             this.btnAboutMenu.TabIndex = 242;
-            this.btnAboutMenu.Text = "About";
+            this.btnAboutMenu.Text = Properties.Resources.ResourceManager.GetString("OptionsView.btnAboutMenu.Text");
             this.btnAboutMenu.UseVisualStyleBackColor = false;
             this.btnAboutMenu.Click += new System.EventHandler(this.btnAboutMenu_Click);
             // 
@@ -120,7 +120,7 @@
             this.btnSettingsMenu.Name = "btnSettingsMenu";
             this.btnSettingsMenu.Size = new System.Drawing.Size(100, 32);
             this.btnSettingsMenu.TabIndex = 241;
-            this.btnSettingsMenu.Text = "Settings";
+            this.btnSettingsMenu.Text = Properties.Resources.ResourceManager.GetString("OptionsView.btnSettingsMenu.Text");
             this.btnSettingsMenu.UseVisualStyleBackColor = false;
             this.btnSettingsMenu.Click += new System.EventHandler(this.btnSettingsMenu_Click);
             // 

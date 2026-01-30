@@ -382,4 +382,68 @@ to insert it into the analyzer.</value></data>
   <data name="LogActions.LogCopiedTitle" xml:space="preserve"><value>Log copied</value></data>
   <data name="OSHelper.OsInfoUnavailable" xml:space="preserve"><value>OS info unavailable: {0}</value></data>
   <data name="OSHelper.OsNotSupported" xml:space="preserve"><value>OS not supported</value></data>
+
+  <data name="ViveView.btnApply.Text" xml:space="preserve"><value>Apply selected</value></data>
+  <data name="ViveView.btnDescription.Text" xml:space="preserve"><value>ViVe Tool</value></data>
+  <data name="ViveView.linkPluginUsage.Text" xml:space="preserve"><value>More infos</value></data>
+  <data name="ViveView.lblCustomIds.Text" xml:space="preserve"><value>Custom Ids</value></data>
+  <data name="ViveView.btnApplyCustom.Text" xml:space="preserve"><value>Apply Custom</value></data>
+
+  <data name="SettingsView.checkSaveToINI.Text" xml:space="preserve"><value>Save all settings to INI file</value></data>
+  <data name="SettingsView.checkBox2.Text" xml:space="preserve"><value>Activate Plugins for PowerShell Tooling (Super Plugins)</value></data>
+  <data name="SettingsView.button1.Text" xml:space="preserve"><value>Basic settings</value></data>
+  <data name="SettingsView.checkInstallIcons.Text" xml:space="preserve"><value>Download optional icons to enhance navigation UI</value></data>
+
+  <data name="PluginsView.btnPluginInstall.Text" xml:space="preserve"><value>Install</value></data>
+  <data name="PluginsView.btnDescription.Text" xml:space="preserve"><value>Plugins Gallery (App restart needed after install)</value></data>
+  <data name="PluginsView.btnPluginEdit.Text" xml:space="preserve"><value>Edit</value></data>
+  <data name="PluginsView.btnPluginRemove.Text" xml:space="preserve"><value>Remove</value></data>
+  <data name="PluginsView.btnPluginSubmit.Text" xml:space="preserve"><value>Submit Plugin</value></data>
+  <data name="PluginsView.btnPluginUpdateAll.Text" xml:space="preserve"><value>Update All</value></data>
+  <data name="PluginsView.btnHelp.Text" xml:space="preserve"><value>Help</value></data>
+  <data name="PluginsView.textSearch.Text" xml:space="preserve"><value>Search</value></data>
+  <data name="PluginsView.linkPluginUsage.Text" xml:space="preserve"><value>Usage notes</value></data>
+  <data name="PluginsView.columnHeader1.Text" xml:space="preserve"><value>Plugin</value></data>
+  <data name="PluginsView.columnHeader2.Text" xml:space="preserve"><value>Installed</value></data>
+  <data name="PluginsView.columnHeader3.Text" xml:space="preserve"><value>Type</value></data>
+
+  <data name="OptionsView.btnViveMenu.Text" xml:space="preserve"><value>Features </value></data>
+  <data name="OptionsView.btnPluginsMenu.Text" xml:space="preserve"><value>Plugins</value></data>
+  <data name="OptionsView.btnAboutMenu.Text" xml:space="preserve"><value>About</value></data>
+  <data name="OptionsView.btnSettingsMenu.Text" xml:space="preserve"><value>Settings</value></data>
+
+  <data name="AboutView.lblHeader.Text" xml:space="preserve"><value>CrapFixer</value></data>
+  <data name="AboutView.label1.Text" xml:space="preserve"><value>You can download the latest version, report bugs and submit feature requests at the following GitHub page.</value></data>
+  <data name="AboutView.lblVersionInfo.Text" xml:space="preserve"><value>v</value></data>
+  <data name="AboutView.linkGitHub.Text" xml:space="preserve"><value>https://github.com/builtbybel/crapfixer</value></data>
+  <data name="AboutView.btnDonate.Text" xml:space="preserve"><value>Donate</value></data>
+  <data name="AboutView.lblCopyright.Text" xml:space="preserve"><value>Copyright (c) 2025 A Belim app creation</value></data>
+
+  <data name="MainForm.btnAnalyze.Text" xml:space="preserve"><value>&amp;Analyze</value></data>
+  <data name="MainForm.Windows.Text" xml:space="preserve"><value>Windows</value></data>
+  <data name="MainForm.analyzeMarkedFeatureToolStripMenuItem.Text" xml:space="preserve"><value>Analyze</value></data>
+  <data name="MainForm.fixMarkedFeatureToolStripMenuItem.Text" xml:space="preserve"><value>Fix</value></data>
+  <data name="MainForm.restoreMarkedFeatureToolStripMenuItem.Text" xml:space="preserve"><value>Restore</value></data>
+  <data name="MainForm.helpMarkedFeatureToolStripMenuItem.Text" xml:space="preserve"><value>Help</value></data>
+  <data name="MainForm.Apps.Text" xml:space="preserve"><value>Applications</value></data>
+  <data name="MainForm.checkedListBoxApps.NoAnalysisYet" xml:space="preserve"><value>No analysis yet</value></data>
+  <data name="MainForm.btnFix.Text" xml:space="preserve"><value>Run &amp;Fixer</value></data>
+  <data name="MainForm.lblOSInfo.Text" xml:space="preserve"><value>Checking your system..</value></data>
+  <data name="MainForm.lblVersionInfo.Text" xml:space="preserve"><value>v</value></data>
+  <data name="MainForm.lblHeader.Text" xml:space="preserve"><value>CrapFixer</value></data>
+  <data name="MainForm.btnRestore.Text" xml:space="preserve"><value>&amp;Restore</value></data>
+  <data name="MainForm.linkUpdateCheck.Text" xml:space="preserve"><value>Check for updates...</value></data>
+  <data name="MainForm.btnTools.Text" xml:space="preserve"><value>&amp;Tools</value></data>
+  <data name="MainForm.btnFixer.Text" xml:space="preserve"><value>&amp;Fixer</value></data>
+  <data name="MainForm.linkSelection.Text" xml:space="preserve"><value>Select all</value></data>
+  <data name="MainForm.Text" xml:space="preserve"><value>CrapFixer</value></data>
+  <data name="ViveView.btnDescription.Disabled" xml:space="preserve"><value>Enable experimental and hidden features (Disabled)</value></data>
+  <data name="ViveView.btnDescription.Enabled" xml:space="preserve"><value>Enable experimental and hidden features (Enabled)</value></data>
+  <data name="ViveView.Status.Unknown" xml:space="preserve"><value>Unknown</value></data>
+  <data name="ViveView.Feature.EnableRedesignedStartMenu" xml:space="preserve"><value>Enable the redesigned Windows 11 Start menu</value></data>
+  <data name="ViveView.Feature.TextExtractorInSnippingTool" xml:space="preserve"><value>Enable Text extractor in Snipping Tool</value></data>
+  <data name="ViveView.Feature.DragTrayShareUI" xml:space="preserve"><value>Enable Drag Tray Share UI</value></data>
+  <data name="PluginsView.Status.Yes" xml:space="preserve"><value>Yes</value></data>
+  <data name="PluginsView.Status.No" xml:space="preserve"><value>No</value></data>
+  <data name="PluginsView.Status.Updated" xml:space="preserve"><value>Updated</value></data>
 </root>

@@ -106,7 +106,7 @@
             this.btnAnalyze.Name = "btnAnalyze";
             this.btnAnalyze.Size = new System.Drawing.Size(121, 29);
             this.btnAnalyze.TabIndex = 1;
-            this.btnAnalyze.Text = "&Analyze";
+            this.btnAnalyze.Text = Properties.Resources.ResourceManager.GetString("MainForm.btnAnalyze.Text");
             this.btnAnalyze.UseVisualStyleBackColor = false;
             this.btnAnalyze.Click += new System.EventHandler(this.btnAnalyze_Click);
             // 
@@ -134,7 +134,7 @@
             this.Windows.Name = "Windows";
             this.Windows.Size = new System.Drawing.Size(247, 334);
             this.Windows.TabIndex = 0;
-            this.Windows.Text = "Windows";
+            this.Windows.Text = Properties.Resources.ResourceManager.GetString("MainForm.Windows.Text");
             // 
             // treeFeatures
             // 
@@ -171,21 +171,21 @@
             // 
             this.analyzeMarkedFeatureToolStripMenuItem.Name = "analyzeMarkedFeatureToolStripMenuItem";
             this.analyzeMarkedFeatureToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.analyzeMarkedFeatureToolStripMenuItem.Text = "Analyze";
+            this.analyzeMarkedFeatureToolStripMenuItem.Text = Properties.Resources.ResourceManager.GetString("MainForm.analyzeMarkedFeatureToolStripMenuItem.Text");
             this.analyzeMarkedFeatureToolStripMenuItem.Click += new System.EventHandler(this.analyzeMarkedFeatureToolStripMenuItem_Click);
             // 
             // fixMarkedFeatureToolStripMenuItem
             // 
             this.fixMarkedFeatureToolStripMenuItem.Name = "fixMarkedFeatureToolStripMenuItem";
             this.fixMarkedFeatureToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.fixMarkedFeatureToolStripMenuItem.Text = "Fix";
+            this.fixMarkedFeatureToolStripMenuItem.Text = Properties.Resources.ResourceManager.GetString("MainForm.fixMarkedFeatureToolStripMenuItem.Text");
             this.fixMarkedFeatureToolStripMenuItem.Click += new System.EventHandler(this.fixMarkedFeatureToolStripMenuItem_Click);
             // 
             // restoreMarkedFeatureToolStripMenuItem
             // 
             this.restoreMarkedFeatureToolStripMenuItem.Name = "restoreMarkedFeatureToolStripMenuItem";
             this.restoreMarkedFeatureToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.restoreMarkedFeatureToolStripMenuItem.Text = "Restore";
+            this.restoreMarkedFeatureToolStripMenuItem.Text = Properties.Resources.ResourceManager.GetString("MainForm.restoreMarkedFeatureToolStripMenuItem.Text");
             this.restoreMarkedFeatureToolStripMenuItem.Click += new System.EventHandler(this.restoreMarkedFeatureToolStripMenuItem_Click);
             // 
             // seperatorToolStripMenuItem
@@ -198,7 +198,7 @@
             this.helpMarkedFeatureToolStripMenuItem.Name = "helpMarkedFeatureToolStripMenuItem";
             this.helpMarkedFeatureToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.helpMarkedFeatureToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.helpMarkedFeatureToolStripMenuItem.Text = "Help";
+            this.helpMarkedFeatureToolStripMenuItem.Text = Properties.Resources.ResourceManager.GetString("MainForm.helpMarkedFeatureToolStripMenuItem.Text");
             this.helpMarkedFeatureToolStripMenuItem.Click += new System.EventHandler(this.helpMarkedFeatureToolStripMenuItem_Click);
             // 
             // Apps
@@ -209,7 +209,7 @@
             this.Apps.Name = "Apps";
             this.Apps.Size = new System.Drawing.Size(247, 334);
             this.Apps.TabIndex = 1;
-            this.Apps.Text = "Applications";
+            this.Apps.Text = Properties.Resources.ResourceManager.GetString("MainForm.Apps.Text");
             // 
             // checkedListBoxApps
             // 
@@ -219,7 +219,7 @@
             this.checkedListBoxApps.Font = new System.Drawing.Font("Tahoma", 8F);
             this.checkedListBoxApps.FormattingEnabled = true;
             this.checkedListBoxApps.Items.AddRange(new object[] {
-            "No analysis yet"});
+            Properties.Resources.ResourceManager.GetString("MainForm.checkedListBoxApps.NoAnalysisYet")});
             this.checkedListBoxApps.Location = new System.Drawing.Point(0, 0);
             this.checkedListBoxApps.Name = "checkedListBoxApps";
             this.checkedListBoxApps.Size = new System.Drawing.Size(247, 334);
@@ -281,7 +281,7 @@
             this.btnFix.Name = "btnFix";
             this.btnFix.Size = new System.Drawing.Size(121, 29);
             this.btnFix.TabIndex = 2;
-            this.btnFix.Text = "Run &Fixer";
+            this.btnFix.Text = Properties.Resources.ResourceManager.GetString("MainForm.btnFix.Text");
             this.btnFix.UseVisualStyleBackColor = false;
             this.btnFix.Click += new System.EventHandler(this.btnFix_Click);
             // 
@@ -329,7 +329,7 @@
             this.lblOSInfo.Name = "lblOSInfo";
             this.lblOSInfo.Size = new System.Drawing.Size(120, 13);
             this.lblOSInfo.TabIndex = 200;
-            this.lblOSInfo.Text = "Checking your system..";
+            this.lblOSInfo.Text = Properties.Resources.ResourceManager.GetString("MainForm.lblOSInfo.Text");
             // 
             // lblVersionInfo
             // 
@@ -341,7 +341,7 @@
             this.lblVersionInfo.Name = "lblVersionInfo";
             this.lblVersionInfo.Size = new System.Drawing.Size(13, 13);
             this.lblVersionInfo.TabIndex = 2;
-            this.lblVersionInfo.Text = "v";
+            this.lblVersionInfo.Text = Properties.Resources.ResourceManager.GetString("MainForm.lblVersionInfo.Text");
             // 
             // lblHeader
             // 
@@ -354,7 +354,7 @@
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(117, 25);
             this.lblHeader.TabIndex = 1;
-            this.lblHeader.Text = "CrapFixer";
+            this.lblHeader.Text = Properties.Resources.ResourceManager.GetString("MainForm.lblHeader.Text");
             this.toolTip.SetToolTip(this.lblHeader, "Click here to visit the CrapFixer website at github.com/builtbybel/crapfixer");
             this.lblHeader.UseCompatibleTextRendering = true;
             // 
@@ -386,7 +386,7 @@
             this.btnRestore.Size = new System.Drawing.Size(80, 60);
             this.btnRestore.TabIndex = 198;
             this.btnRestore.TabStop = false;
-            this.btnRestore.Text = "&Restore";
+            this.btnRestore.Text = Properties.Resources.ResourceManager.GetString("MainForm.btnRestore.Text");
             this.btnRestore.UseVisualStyleBackColor = true;
             this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
@@ -403,7 +403,7 @@
             this.linkUpdateCheck.Size = new System.Drawing.Size(107, 13);
             this.linkUpdateCheck.TabIndex = 203;
             this.linkUpdateCheck.TabStop = true;
-            this.linkUpdateCheck.Text = "Check for updates...";
+            this.linkUpdateCheck.Text = Properties.Resources.ResourceManager.GetString("MainForm.linkUpdateCheck.Text");
             this.linkUpdateCheck.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkUpdateCheck.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUpdateCheck_LinkClicked);
             // 
@@ -421,7 +421,7 @@
             this.btnTools.Size = new System.Drawing.Size(80, 60);
             this.btnTools.TabIndex = 205;
             this.btnTools.TabStop = false;
-            this.btnTools.Text = "&Tools";
+            this.btnTools.Text = Properties.Resources.ResourceManager.GetString("MainForm.btnTools.Text");
             this.btnTools.UseVisualStyleBackColor = true;
             // 
             // btnFixer
@@ -438,7 +438,7 @@
             this.btnFixer.Size = new System.Drawing.Size(80, 60);
             this.btnFixer.TabIndex = 206;
             this.btnFixer.TabStop = false;
-            this.btnFixer.Text = "&Fixer";
+            this.btnFixer.Text = Properties.Resources.ResourceManager.GetString("MainForm.btnFixer.Text");
             this.btnFixer.UseVisualStyleBackColor = false;
             // 
             // linkSelection
@@ -454,7 +454,7 @@
             this.linkSelection.Size = new System.Drawing.Size(49, 13);
             this.linkSelection.TabIndex = 207;
             this.linkSelection.TabStop = true;
-            this.linkSelection.Text = "Select all";
+            this.linkSelection.Text = Properties.Resources.ResourceManager.GetString("MainForm.linkSelection.Text");
             this.linkSelection.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkSelection.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSelection_LinkClicked);
             // 
@@ -477,7 +477,7 @@
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CrapFixer";
+            this.Text = Properties.Resources.ResourceManager.GetString("MainForm.Text");
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panelContainer.ResumeLayout(false);

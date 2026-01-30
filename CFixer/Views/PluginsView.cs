@@ -187,7 +187,7 @@ namespace CFixer.Views
                     {
                         await client.DownloadFileTaskAsync(new Uri(plugin.Url), file);
                         installedPlugins.Add(Path.GetFileName(plugin.Url));
-                        item.SubItems[1].Text = "Yes";  // Update Installed column
+                        item.SubItems[1].Text = Properties.Resources.ResourceManager.GetString("PluginsView.Status.Yes");  // Update Installed column
                         //item.Checked = true;                // Ensure checked
                     }
                     catch (Exception ex)
@@ -224,7 +224,7 @@ namespace CFixer.Views
             // Update the status of all plugins to "Updated"
             foreach (ListViewItem item in listPlugins.Items)
             {
-                item.SubItems[1].Text = "Updated";
+                item.SubItems[1].Text = Properties.Resources.ResourceManager.GetString("PluginsView.Status.Updated");
             }
 
             MessageBox.Show(Properties.Resources.ResourceManager.GetString("PluginsView.AllPluginsUpdated"));
@@ -254,7 +254,7 @@ namespace CFixer.Views
                     File.Delete(path);
 
                 installedPlugins.Remove(Path.GetFileName(plugin.Url));
-                item.SubItems[1].Text = "No";
+                item.SubItems[1].Text = Properties.Resources.ResourceManager.GetString("PluginsView.Status.No");
                 item.Checked = false;
             }
 
@@ -359,7 +359,7 @@ namespace CFixer.Views
                 }
 
                 var item = new ListViewItem(plugin.Name);
-                item.SubItems.Add(isInstalled ? "Yes" : "No");
+                item.SubItems.Add(isInstalled ? Properties.Resources.ResourceManager.GetString("PluginsView.Status.Yes") : Properties.Resources.ResourceManager.GetString("PluginsView.Status.No"));
                 item.SubItems.Add(type);
                 item.Tag = plugin;
                 item.Checked = isInstalled;

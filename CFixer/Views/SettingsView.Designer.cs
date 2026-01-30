@@ -41,7 +41,7 @@
             this.checkSaveToINI.Name = "checkSaveToINI";
             this.checkSaveToINI.Size = new System.Drawing.Size(148, 17);
             this.checkSaveToINI.TabIndex = 0;
-            this.checkSaveToINI.Text = "Save all settings to INI file";
+            this.checkSaveToINI.Text = Properties.Resources.ResourceManager.GetString("SettingsView.checkSaveToINI.Text");
             this.checkSaveToINI.UseVisualStyleBackColor = true;
             // 
             // checkBox2
@@ -53,7 +53,7 @@
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(236, 35);
             this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Activate Plugins for PowerShell Tooling (Super Plugins)";
+            this.checkBox2.Text = Properties.Resources.ResourceManager.GetString("SettingsView.checkBox2.Text");
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -68,7 +68,7 @@
             this.button1.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button1.Size = new System.Drawing.Size(594, 25);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Basic settings";
+            this.button1.Text = Properties.Resources.ResourceManager.GetString("SettingsView.button1.Text");
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
             // 
@@ -79,7 +79,7 @@
             this.checkInstallIcons.Name = "checkInstallIcons";
             this.checkInstallIcons.Size = new System.Drawing.Size(265, 17);
             this.checkInstallIcons.TabIndex = 4;
-            this.checkInstallIcons.Text = "Download optional icons to enhance navigation UI";
+            this.checkInstallIcons.Text = Properties.Resources.ResourceManager.GetString("SettingsView.checkInstallIcons.Text");
             this.checkInstallIcons.UseVisualStyleBackColor = true;
             this.checkInstallIcons.CheckedChanged += new System.EventHandler(this.checkInstallIcons_CheckedChanged);
             // 

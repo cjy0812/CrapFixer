@@ -52,7 +52,7 @@
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(71, 21);
             this.lblHeader.TabIndex = 235;
-            this.lblHeader.Text = "CrapFixer";
+            this.lblHeader.Text = Properties.Resources.ResourceManager.GetString("AboutView.lblHeader.Text");
             this.lblHeader.UseCompatibleTextRendering = true;
             // 
             // label1
@@ -64,8 +64,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(589, 26);
             this.label1.TabIndex = 236;
-            this.label1.Text = "You can download the latest version, report bugs and submit feature requests at t" +
-    "he following GitHub page.";
+            this.label1.Text = Properties.Resources.ResourceManager.GetString("AboutView.label1.Text");
             // 
             // pictureBox1
             // 
@@ -85,7 +84,7 @@
             this.lblVersionInfo.Name = "lblVersionInfo";
             this.lblVersionInfo.Size = new System.Drawing.Size(13, 13);
             this.lblVersionInfo.TabIndex = 238;
-            this.lblVersionInfo.Text = "v";
+            this.lblVersionInfo.Text = Properties.Resources.ResourceManager.GetString("AboutView.lblVersionInfo.Text");
             // 
             // linkGitHub
             // 
@@ -95,7 +94,7 @@
             this.linkGitHub.Size = new System.Drawing.Size(189, 13);
             this.linkGitHub.TabIndex = 239;
             this.linkGitHub.TabStop = true;
-            this.linkGitHub.Text = "https://github.com/builtbybel/crapfixer";
+            this.linkGitHub.Text = Properties.Resources.ResourceManager.GetString("AboutView.linkGitHub.Text");
             this.linkGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGitHub_LinkClicked);
             // 
             // btnDonate
@@ -110,7 +109,7 @@
             this.btnDonate.Name = "btnDonate";
             this.btnDonate.Size = new System.Drawing.Size(101, 22);
             this.btnDonate.TabIndex = 240;
-            this.btnDonate.Text = "Donate";
+            this.btnDonate.Text = Properties.Resources.ResourceManager.GetString("AboutView.btnDonate.Text");
             this.btnDonate.UseVisualStyleBackColor = false;
             this.btnDonate.Click += new System.EventHandler(this.btnDonate_Click);
             // 
@@ -161,7 +160,7 @@
             this.lblCopyright.Name = "lblCopyright";
             this.lblCopyright.Size = new System.Drawing.Size(193, 13);
             this.lblCopyright.TabIndex = 241;
-            this.lblCopyright.Text = "Copyright (c) 2025 A Belim app creation";
+            this.lblCopyright.Text = Properties.Resources.ResourceManager.GetString("AboutView.lblCopyright.Text");
             // 
             // AboutView
             // 

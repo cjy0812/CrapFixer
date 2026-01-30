@@ -51,7 +51,7 @@
             this.btnPluginInstall.Name = "btnPluginInstall";
             this.btnPluginInstall.Size = new System.Drawing.Size(109, 29);
             this.btnPluginInstall.TabIndex = 7;
-            this.btnPluginInstall.Text = "Install";
+            this.btnPluginInstall.Text = Properties.Resources.ResourceManager.GetString("PluginsView.btnPluginInstall.Text");
             this.btnPluginInstall.UseVisualStyleBackColor = true;
             this.btnPluginInstall.Click += new System.EventHandler(this.btnPluginInstall_Click);
             // 
@@ -68,7 +68,7 @@
             this.btnDescription.Padding = new System.Windows.Forms.Padding(20, 0, 100, 0);
             this.btnDescription.Size = new System.Drawing.Size(594, 25);
             this.btnDescription.TabIndex = 6;
-            this.btnDescription.Text = "Plugins Gallery (App restart needed after install)";
+            this.btnDescription.Text = Properties.Resources.ResourceManager.GetString("PluginsView.btnDescription.Text");
             this.btnDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDescription.UseVisualStyleBackColor = true;
             // 
@@ -89,7 +89,7 @@
             this.btnPluginEdit.Name = "btnPluginEdit";
             this.btnPluginEdit.Size = new System.Drawing.Size(109, 29);
             this.btnPluginEdit.TabIndex = 10;
-            this.btnPluginEdit.Text = "Edit";
+            this.btnPluginEdit.Text = Properties.Resources.ResourceManager.GetString("PluginsView.btnPluginEdit.Text");
             this.btnPluginEdit.UseVisualStyleBackColor = true;
             this.btnPluginEdit.Click += new System.EventHandler(this.btnPluginEdit_Click);
             // 
@@ -100,7 +100,7 @@
             this.btnPluginRemove.Name = "btnPluginRemove";
             this.btnPluginRemove.Size = new System.Drawing.Size(109, 29);
             this.btnPluginRemove.TabIndex = 11;
-            this.btnPluginRemove.Text = "Remove";
+            this.btnPluginRemove.Text = Properties.Resources.ResourceManager.GetString("PluginsView.btnPluginRemove.Text");
             this.btnPluginRemove.UseVisualStyleBackColor = true;
             this.btnPluginRemove.Click += new System.EventHandler(this.btnPluginRemove_Click);
             // 
@@ -111,7 +111,7 @@
             this.btnPluginSubmit.Name = "btnPluginSubmit";
             this.btnPluginSubmit.Size = new System.Drawing.Size(109, 29);
             this.btnPluginSubmit.TabIndex = 12;
-            this.btnPluginSubmit.Text = "Submit Plugin";
+            this.btnPluginSubmit.Text = Properties.Resources.ResourceManager.GetString("PluginsView.btnPluginSubmit.Text");
             this.btnPluginSubmit.UseVisualStyleBackColor = true;
             this.btnPluginSubmit.Click += new System.EventHandler(this.btnPluginSubmit_Click);
             // 
@@ -122,7 +122,7 @@
             this.btnPluginUpdateAll.Name = "btnPluginUpdateAll";
             this.btnPluginUpdateAll.Size = new System.Drawing.Size(109, 29);
             this.btnPluginUpdateAll.TabIndex = 13;
-            this.btnPluginUpdateAll.Text = "Update All";
+            this.btnPluginUpdateAll.Text = Properties.Resources.ResourceManager.GetString("PluginsView.btnPluginUpdateAll.Text");
             this.btnPluginUpdateAll.UseVisualStyleBackColor = true;
             this.btnPluginUpdateAll.Click += new System.EventHandler(this.btnPluginUpdateAll_Click);
             // 
@@ -133,7 +133,7 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(109, 29);
             this.btnHelp.TabIndex = 14;
-            this.btnHelp.Text = "Help";
+            this.btnHelp.Text = Properties.Resources.ResourceManager.GetString("PluginsView.btnHelp.Text");
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
@@ -144,7 +144,7 @@
             this.textSearch.Name = "textSearch";
             this.textSearch.Size = new System.Drawing.Size(109, 20);
             this.textSearch.TabIndex = 245;
-            this.textSearch.Text = "Search";
+            this.textSearch.Text = Properties.Resources.ResourceManager.GetString("PluginsView.textSearch.Text");
             this.textSearch.Click += new System.EventHandler(this.textSearch_Click);
             this.textSearch.TextChanged += new System.EventHandler(this.textSearch_TextChanged);
             // 
@@ -158,7 +158,7 @@
             this.linkPluginUsage.Size = new System.Drawing.Size(67, 13);
             this.linkPluginUsage.TabIndex = 246;
             this.linkPluginUsage.TabStop = true;
-            this.linkPluginUsage.Text = "Usage notes";
+            this.linkPluginUsage.Text = Properties.Resources.ResourceManager.GetString("PluginsView.linkPluginUsage.Text");
             this.linkPluginUsage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkPluginUsage_LinkClicked);
             // 
             // listPlugins
@@ -184,15 +184,15 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Plugin";
+            this.columnHeader1.Text = Properties.Resources.ResourceManager.GetString("PluginsView.columnHeader1.Text");
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Installed";
+            this.columnHeader2.Text = Properties.Resources.ResourceManager.GetString("PluginsView.columnHeader2.Text");
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Type";
+            this.columnHeader3.Text = Properties.Resources.ResourceManager.GetString("PluginsView.columnHeader3.Text");
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // PluginsView

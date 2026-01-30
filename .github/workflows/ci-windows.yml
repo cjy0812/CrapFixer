@@ -1,0 +1,56 @@
+name: CI - Build (Windows)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-windows:
+    name: Build on Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1
+
+      - name: Setup MSBuild (adds msbuild to PATH)
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Verify .NET Framework targeting pack
+        shell: pwsh
+        run: |
+          # Check for v4.8.1 or v4.8 targeting pack presence
+          $p1 = 'C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.8.1'
+          $p2 = 'C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.8'
+          if (-not (Test-Path $p1) -and -not (Test-Path $p2)) {
+            Write-Error "NET Framework targeting pack v4.8.1/v4.8 not found on runner. Please use a Windows image with Visual Studio or install Targeting Pack."
+            exit 1
+          }
+          Write-Host "Targeting pack found." -ForegroundColor Green
+
+      - name: Restore NuGet packages
+        run: nuget restore CFixer.sln
+
+      - name: Build solution (Debug)
+        run: msbuild CFixer.sln /t:Build /p:Configuration=Debug /m
+
+      - name: Publish build outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: CFixer-build-debug
+          path: |
+            CFixer\bin\Debug\
+            bin\Debug\
+
+      - name: Run basic smoke check (optional)
+        shell: pwsh
+        run: |
+          dotnet --info || Write-Host 'dotnet not required; MSBuild used for .NET Framework build'
+          & msbuild -version
+
+outputs: {}

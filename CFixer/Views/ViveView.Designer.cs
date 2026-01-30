@@ -114,7 +114,7 @@
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(109, 29);
             this.btnApply.TabIndex = 8;
-            this.btnApply.Text = "Apply selected";
+            this.btnApply.Text = Properties.Resources.ResourceManager.GetString("ViveView.btnApply.Text");
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnViveApply_Click);
             // 
@@ -131,7 +131,7 @@
             this.btnDescription.Padding = new System.Windows.Forms.Padding(20, 0, 100, 0);
             this.btnDescription.Size = new System.Drawing.Size(594, 25);
             this.btnDescription.TabIndex = 9;
-            this.btnDescription.Text = "ViVe Tool";
+            this.btnDescription.Text = Properties.Resources.ResourceManager.GetString("ViveView.btnDescription.Text");
             this.btnDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDescription.UseVisualStyleBackColor = true;
             // 
@@ -145,7 +145,7 @@
             this.linkPluginUsage.Size = new System.Drawing.Size(56, 13);
             this.linkPluginUsage.TabIndex = 247;
             this.linkPluginUsage.TabStop = true;
-            this.linkPluginUsage.Text = "More infos";
+            this.linkPluginUsage.Text = Properties.Resources.ResourceManager.GetString("ViveView.linkPluginUsage.Text");
             this.linkPluginUsage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkPluginUsage_LinkClicked);
             // 
             // txtCustomIds
@@ -167,7 +167,7 @@
             this.lblCustomIds.Name = "lblCustomIds";
             this.lblCustomIds.Size = new System.Drawing.Size(59, 13);
             this.lblCustomIds.TabIndex = 249;
-            this.lblCustomIds.Text = "Custom Ids";
+            this.lblCustomIds.Text = Properties.Resources.ResourceManager.GetString("ViveView.lblCustomIds.Text");
             // 
             // btnApplyCustom
             // 
@@ -176,7 +176,7 @@
             this.btnApplyCustom.Name = "btnApplyCustom";
             this.btnApplyCustom.Size = new System.Drawing.Size(109, 29);
             this.btnApplyCustom.TabIndex = 250;
-            this.btnApplyCustom.Text = "Apply Custom";
+            this.btnApplyCustom.Text = Properties.Resources.ResourceManager.GetString("ViveView.btnApplyCustom.Text");
             this.btnApplyCustom.UseVisualStyleBackColor = true;
             this.btnApplyCustom.Click += new System.EventHandler(this.btnApplyCustom_Click);
             // 

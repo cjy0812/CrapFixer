@@ -36,7 +36,7 @@ namespace CFixer.Views
             if (viveFolder == null)
             {
                 viveToolPath = null;
-                btnDescription.Text = "Enable experimental and hidden features (Disabled)";
+                btnDescription.Text = Properties.Resources.ResourceManager.GetString("ViveView.btnDescription.Disabled");
                 return;
             }
 
@@ -44,7 +44,7 @@ namespace CFixer.Views
             if (File.Exists(exePath))
             {
                 viveToolPath = exePath;
-                btnDescription.Text = "Enable experimental and hidden features (Enabled)";
+                btnDescription.Text = Properties.Resources.ResourceManager.GetString("ViveView.btnDescription.Enabled");
             }
         }
 
@@ -58,21 +58,21 @@ namespace CFixer.Views
                 new ViveFeature
                 {
                     Ids = new List<int> {47205210, 49221331, 49381526, 49402389, 49820095, 55495322, 48433719},
-                    Name = "Enable the redesigned Windows 11 Start menu",
+                    Name = Properties.Resources.ResourceManager.GetString("ViveView.Feature.EnableRedesignedStartMenu"),
                     InfoUrl = "https://www.neowin.net/guides/how-to-enable-the-redesigned-windows-11-start-menu/",
                     Enabled = false
                 },
                 new ViveFeature
                 {
                     Ids = new List<int> {52467192,53079680},
-                    Name = "Enable Text extractor in Snipping Tool",
+                    Name = Properties.Resources.ResourceManager.GetString("ViveView.Feature.TextExtractorInSnippingTool"),
                     InfoUrl = "https://blogs.windows.com/windows-insider/2025/04/15/text-extractor-in-snipping-tool-begins-rolling-out-to-windows-insiders/",
                     Enabled = false
                 }
                     ,new ViveFeature
                 {
                     Ids = new List<int> {45624564},
-                    Name = "Enable Drag Tray Share UI",
+                    Name = Properties.Resources.ResourceManager.GetString("ViveView.Feature.DragTrayShareUI"),
                     InfoUrl = "https://www.neowin.net/news/windows-11-is-getting-a-quirky-new-way-to-share-files/",
                     Enabled = false
                 }
@@ -95,7 +95,7 @@ namespace CFixer.Views
                 row.Cells["NameColumn"].Value = feature.Name;
                 row.Cells["IdColumn"].Value = feature.IdsAsString;
                 row.Cells["InfoColumn"].Value = feature.InfoUrl;
-                row.Cells["StatusColumn"].Value = "Unknown";
+                row.Cells["StatusColumn"].Value = Properties.Resources.ResourceManager.GetString("ViveView.Status.Unknown");
             }
         }
 
