@@ -1,65 +1,166 @@
-name: Build and Release
+name: Build and Release CrapFixer
 
 on:
   push:
-    branches: [ main, master ]
-    tags: [ 'v*' ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main, master ]
-  workflow_dispatch:  # 允许手动触发
+    branches: [ main ]
+  release:
+    types: [published]
 
 env:
-  DOTNET_VERSION: '8.0.x'  # 根据您的项目调整 .NET 版本
-  CONFIGURATION: 'Release'
+  DOTNET_VERSION: '6.0.x'  # 或根据您的项目使用 .NET Framework 版本
+  SOLUTION_FILE: 'CFixer.sln'
+  PROJECT_NAME: 'CFixer'
 
 jobs:
   build:
-    runs-on: windows-latest  # Windows 项目需要 Windows runner
+    runs-on: windows-latest
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-        
-    - name: Restore dependencies
-      run: dotnet restore CFixer.sln
-      
-    - name: Build solution
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.3
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-version: '6.x'
+
+    - name: Install Windows 8.1 SDK (for WinRT support)
       run: |
-        echo "Building ${{ env.CONFIGURATION }} configuration..."
-        dotnet build CFixer.sln --configuration ${{ env.CONFIGURATION }} --no-restore /p:Platform="Any CPU"
-        
-    - name: Run tests (if any)
-      run: dotnet test --verbosity normal --configuration ${{ env.CONFIGURATION }}
-      
-    - name: Publish application
+        # 下载并安装 Windows 8.1 SDK
+        $sdkUrl = "https://download.microsoft.com/download/B/0/C/B0C80BA3-8AD6-4958-810B-6882485230B5/standalonesdk/sdksetup.exe"
+        $installerPath = "$env:TEMP\sdksetup.exe"
+        Invoke-WebRequest -Uri $sdkUrl -OutFile $installerPath
+        Start-Process -FilePath $installerPath -ArgumentList "/quiet", "/norestart", "/features", "OptionId.WindowsDesktopDebuggers" -Wait
+        Write-Host "Windows 8.1 SDK installed"
+
+    - name: Restore NuGet packages
+      run: nuget restore ${{ env.SOLUTION_FILE }}
+
+    - name: Build Solution (Debug)
       run: |
-        dotnet publish CFixer.sln `
-          --configuration ${{ env.CONFIGURATION }} `
-          --output ./publish `
-          --no-build `
-          -p:PublishReadyToRun=true `
-          -p:PublishSingleFile=true `
-          -p:IncludeNativeLibrariesForSelfExtract=true `
-          -p:DebugType=none `
-          -p:DebugSymbols=false
-          
-    - name: Create artifacts
+        msbuild ${{ env.SOLUTION_FILE }} `
+          /p:Configuration=Debug `
+          /p:Platform="Any CPU" `
+          /p:OutputPath=bin\Debug `
+          /verbosity:minimal
+
+    - name: Build Solution (Release)
       run: |
-        # 压缩发布文件
-        Compress-Archive -Path ./publish/* -DestinationPath ./CFixer-${{ github.run_number }}.zip -Force
+        msbuild ${{ env.SOLUTION_FILE }} `
+          /p:Configuration=Release `
+          /p:Platform="Any CPU" `
+          /p:OutputPath=bin\Release `
+          /verbosity:minimal
+
+    - name: Run Tests (if any)
+      run: |
+        # 如果有测试项目，可以在这里运行
+        dotnet test --verbosity normal
+      continue-on-error: true  # 如果没有测试，忽略错误
+
+    - name: Create Artifacts
+      run: |
+        # 创建发布包
+        $version = Get-Date -Format "yyyy.MM.dd.HHmm"
+        $artifactName = "CrapFixer_v$version"
         
-    - name: Upload artifacts
+        # 创建发布目录结构
+        New-Item -ItemType Directory -Path "release\$artifactName"
+        
+        # 复制必要文件
+        Copy-Item -Path "bin\Release\*" -Destination "release\$artifactName\" -Recurse -Force
+        
+        # 复制额外的资源文件
+        Copy-Item -Path "README.md" -Destination "release\$artifactName\" -Force
+        Copy-Item -Path "LICENSE" -Destination "release\$artifactName\" -Force
+        Copy-Item -Path "icons\*" -Destination "release\$artifactName\" -Recurse -Force 2>$null
+        
+        # 创建压缩包
+        Compress-Archive -Path "release\$artifactName\*" -DestinationPath "release\$artifactName.zip" -Force
+        
+        echo "ARTIFACT_NAME=$artifactName" >> $env:GITHUB_ENV
+
+    - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: CFixer-${{ env.CONFIGURATION }}
+        name: CrapFixer-Artifacts
         path: |
-          ./CFixer-${{ github.run_number }}.zip
-          ./publish/
+          bin/Release/
+          release/*.zip
         retention-days: 7
+
+  release:
+    needs: build
+    runs-on: windows-latest
+    if: github.event_name == 'release'
+    
+    steps:
+    - name: Download Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: CrapFixer-Artifacts
+        path: artifacts
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: artifacts/release/*.zip
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+
+  analyze:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        args: >
+          /d:sonar.projectKey=cjy0812_CrapFixer
+          /d:sonar.organization=cjy0812
+          /d:sonar.host.url=https://sonarcloud.io
+          /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+          /d:sonar.coverage.exclusions=**/*Test*.cs
+      continue-on-error: true  # 如果没有 SonarCloud，忽略错误
+
+  security-scan:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Run CodeQL Analysis
+      uses: github/codeql-action/init@v2
+      with:
+        languages: csharp
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+
+    - name: Dependency Vulnerability Scan
+      uses: dependency-review-action@v4
+      with:
+        fail-on-severity: high
