@@ -1,56 +1,65 @@
-name: CI - Build (Windows)
+name: Build and Release
 
 on:
   push:
     branches: [ main, master ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:  # 允许手动触发
+
+env:
+  DOTNET_VERSION: '8.0.x'  # 根据您的项目调整 .NET 版本
+  CONFIGURATION: 'Release'
 
 jobs:
-  build-windows:
-    name: Build on Windows
-    runs-on: windows-latest
-
+  build:
+    runs-on: windows-latest  # Windows 项目需要 Windows runner
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1
-
-      - name: Setup MSBuild (adds msbuild to PATH)
-        uses: microsoft/setup-msbuild@v1.1
-
-      - name: Verify .NET Framework targeting pack
-        shell: pwsh
-        run: |
-          # Check for v4.8.1 or v4.8 targeting pack presence
-          $p1 = 'C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.8.1'
-          $p2 = 'C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.8'
-          if (-not (Test-Path $p1) -and -not (Test-Path $p2)) {
-            Write-Error "NET Framework targeting pack v4.8.1/v4.8 not found on runner. Please use a Windows image with Visual Studio or install Targeting Pack."
-            exit 1
-          }
-          Write-Host "Targeting pack found." -ForegroundColor Green
-
-      - name: Restore NuGet packages
-        run: nuget restore CFixer.sln
-
-      - name: Build solution (Debug)
-        run: msbuild CFixer.sln /t:Build /p:Configuration=Debug /m
-
-      - name: Publish build outputs
-        uses: actions/upload-artifact@v4
-        with:
-          name: CFixer-build-debug
-          path: |
-            CFixer\bin\Debug\
-            bin\Debug\
-
-      - name: Run basic smoke check (optional)
-        shell: pwsh
-        run: |
-          dotnet --info || Write-Host 'dotnet not required; MSBuild used for .NET Framework build'
-          & msbuild -version
-
-outputs: {}
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Restore dependencies
+      run: dotnet restore CFixer.sln
+      
+    - name: Build solution
+      run: |
+        echo "Building ${{ env.CONFIGURATION }} configuration..."
+        dotnet build CFixer.sln --configuration ${{ env.CONFIGURATION }} --no-restore /p:Platform="Any CPU"
+        
+    - name: Run tests (if any)
+      run: dotnet test --verbosity normal --configuration ${{ env.CONFIGURATION }}
+      
+    - name: Publish application
+      run: |
+        dotnet publish CFixer.sln `
+          --configuration ${{ env.CONFIGURATION }} `
+          --output ./publish `
+          --no-build `
+          -p:PublishReadyToRun=true `
+          -p:PublishSingleFile=true `
+          -p:IncludeNativeLibrariesForSelfExtract=true `
+          -p:DebugType=none `
+          -p:DebugSymbols=false
+          
+    - name: Create artifacts
+      run: |
+        # 压缩发布文件
+        Compress-Archive -Path ./publish/* -DestinationPath ./CFixer-${{ github.run_number }}.zip -Force
+        
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: CFixer-${{ env.CONFIGURATION }}
+        path: |
+          ./CFixer-${{ github.run_number }}.zip
+          ./publish/
+        retention-days: 7
