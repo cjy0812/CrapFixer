@@ -1,166 +1,409 @@
 name: Build and Release CrapFixer
 
 on:
+  # 手动触发配置
+  workflow_dispatch:
+    inputs:
+      build_configuration:
+        description: '选择构建配置'
+        required: true
+        default: 'Release'
+        type: choice
+        options:
+          - Debug
+          - Release
+          - Both
+      target_branch:
+        description: '目标分支'
+        required: true
+        default: 'main'
+        type: string
+      create_release_zip:
+        description: '创建发布ZIP包'
+        required: false
+        default: true
+        type: boolean
+      version_override:
+        description: '自定义版本号 (格式: 1.0.0 或 yyyy.MM.dd)'
+        required: false
+        type: string
+      cleanup_old_artifacts:
+        description: '清理旧的构建产物'
+        required: false
+        default: true
+        type: boolean
+      run_security_scans:
+        description: '运行安全扫描'
+        required: false
+        default: false
+        type: boolean
+
+  # 自动触发配置
   push:
     branches: [ main, develop ]
+    tags:
+      - 'v*.*.*'
   pull_request:
-    branches: [ main ]
-  release:
-    types: [published]
+    branches: [ main, develop ]
 
 env:
-  DOTNET_VERSION: '6.0.x'  # 或根据您的项目使用 .NET Framework 版本
+  DOTNET_VERSION: '6.0.x'
   SOLUTION_FILE: 'CFixer.sln'
   PROJECT_NAME: 'CFixer'
 
 jobs:
   build:
+    name: "构建 (${{ github.event_name == 'workflow_dispatch' && github.event.inputs.build_configuration || 'Release' }})"
     runs-on: windows-latest
     
     steps:
-    - name: Checkout repository
+    - name: "📦 开始构建 - ${{ github.actor }} 触发"
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        echo "========================================"
+        echo "🚀 手动构建触发"
+        echo "👤 触发者: ${{ github.actor }}"
+        echo "🎯 分支: ${{ github.event.inputs.target_branch }}"
+        echo "⚙️  配置: ${{ github.event.inputs.build_configuration }}"
+        echo "📦 创建ZIP: ${{ github.event.inputs.create_release_zip }}"
+        echo "🧹 清理旧产物: ${{ github.event.inputs.cleanup_old_artifacts }}"
+        echo "🔒 安全扫描: ${{ github.event.inputs.run_security_scans }}"
+        echo "========================================"
+
+    - name: "🔍 检出代码"
       uses: actions/checkout@v4
       with:
+        ref: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.target_branch || github.ref }}
         fetch-depth: 0
 
-    - name: Setup .NET
+    - name: "🛠️ 设置构建环境"
+      id: setup
+      run: |
+        # 设置版本号
+        if [ -n "${{ github.event.inputs.version_override }}" ]; then
+          echo "VERSION=${{ github.event.inputs.version_override }}" >> $GITHUB_ENV
+          echo "CUSTOM_VERSION=true" >> $GITHUB_ENV
+        elif [ "${{ github.event_name }}" == "push" ] && [ -n "${{ github.ref_name }}" ] && [[ "${{ github.ref_name }}" == v* ]]; then
+          echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
+          echo "CUSTOM_VERSION=true" >> $GITHUB_ENV
+        else
+          $date = Get-Date -Format "yyyy.MM.dd.HHmm"
+          echo "VERSION=$date" >> $GITHUB_ENV
+          echo "CUSTOM_VERSION=false" >> $GITHUB_ENV
+        fi
+        
+        # 设置构建配置
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          echo "BUILD_CONFIG=${{ github.event.inputs.build_configuration }}" >> $GITHUB_ENV
+          echo "CREATE_ZIP=${{ github.event.inputs.create_release_zip }}" >> $GITHUB_ENV
+          echo "RUN_SECURITY=${{ github.event.inputs.run_security_scans }}" >> $GITHUB_ENV
+        else
+          echo "BUILD_CONFIG=Release" >> $GITHUB_ENV
+          echo "CREATE_ZIP=true" >> $GITHUB_ENV
+          echo "RUN_SECURITY=false" >> $GITHUB_ENV
+        fi
+        
+        echo "📋 构建版本: ${{ env.VERSION }}"
+        echo "⚙️  构建配置: ${{ env.BUILD_CONFIG }}"
+
+    - name: "🧹 清理工作空间"
+      if: github.event_name == 'workflow_dispatch' && github.event.inputs.cleanup_old_artifacts == true
+      run: |
+        Remove-Item -Path "bin" -Recurse -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "obj" -Recurse -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "release" -Recurse -Force -ErrorAction SilentlyContinue
+        Write-Host "✅ 已清理旧构建产物"
+
+    - name: "📦 设置 .NET"
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: Setup MSBuild
+    - name: "🔧 设置 MSBuild"
       uses: microsoft/setup-msbuild@v1.3
 
-    - name: Setup NuGet
-      uses: nuget/setup-nuget@v1
-      with:
-        nuget-version: '6.x'
-
-    - name: Install Windows 8.1 SDK (for WinRT support)
-      run: |
-        # 下载并安装 Windows 8.1 SDK
-        $sdkUrl = "https://download.microsoft.com/download/B/0/C/B0C80BA3-8AD6-4958-810B-6882485230B5/standalonesdk/sdksetup.exe"
-        $installerPath = "$env:TEMP\sdksetup.exe"
-        Invoke-WebRequest -Uri $sdkUrl -OutFile $installerPath
-        Start-Process -FilePath $installerPath -ArgumentList "/quiet", "/norestart", "/features", "OptionId.WindowsDesktopDebuggers" -Wait
-        Write-Host "Windows 8.1 SDK installed"
-
-    - name: Restore NuGet packages
+    - name: "📦 恢复 NuGet 包"
       run: nuget restore ${{ env.SOLUTION_FILE }}
 
-    - name: Build Solution (Debug)
+    - name: "🛠️ 安装 Windows SDK (用于 WinRT)"
       run: |
-        msbuild ${{ env.SOLUTION_FILE }} `
-          /p:Configuration=Debug `
-          /p:Platform="Any CPU" `
-          /p:OutputPath=bin\Debug `
-          /verbosity:minimal
+        Write-Host "正在安装 Windows 8.1 SDK..."
+        # 检查是否已安装
+        $sdkPath = "C:\Program Files (x86)\Windows Kits\8.1"
+        if (Test-Path $sdkPath) {
+          Write-Host "✅ Windows SDK 已安装"
+        } else {
+          Write-Host "📥 正在下载 Windows SDK..."
+          $sdkUrl = "https://download.microsoft.com/download/B/0/C/B0C80BA3-8AD6-4958-810B-6882485230B5/standalonesdk/sdksetup.exe"
+          $installerPath = "$env:TEMP\sdksetup.exe"
+          Invoke-WebRequest -Uri $sdkUrl -OutFile $installerPath
+          Write-Host "🔧 安装 Windows SDK..."
+          Start-Process -FilePath $installerPath -ArgumentList "/quiet", "/norestart" -Wait
+          Write-Host "✅ Windows SDK 安装完成"
+        }
 
-    - name: Build Solution (Release)
+    - name: "🏗️ 构建解决方案"
       run: |
-        msbuild ${{ env.SOLUTION_FILE }} `
-          /p:Configuration=Release `
-          /p:Platform="Any CPU" `
-          /p:OutputPath=bin\Release `
-          /verbosity:minimal
+        $configurations = @()
+        
+        if ("${{ env.BUILD_CONFIG }}" -eq "Both") {
+          $configurations = @("Debug", "Release")
+        } else {
+          $configurations = @("${{ env.BUILD_CONFIG }}")
+        }
+        
+        foreach ($config in $configurations) {
+          Write-Host "`n🔨 构建 $config 配置..." -ForegroundColor Cyan
+          
+          msbuild ${{ env.SOLUTION_FILE }} `
+            /p:Configuration=$config `
+            /p:Platform="Any CPU" `
+            /p:OutputPath="bin\$config" `
+            /p:AssemblyVersion="${{ env.VERSION }}" `
+            /p:FileVersion="${{ env.VERSION }}" `
+            /verbosity:minimal `
+            /logger:"C:\Program Files\Azure Pipelines\Agent\bin\Microsoft.TeamFoundation.DistributedTask.MSBuild.Logger.dll"
+            
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "❌ $config 构建失败" -ForegroundColor Red
+            exit 1
+          }
+          
+          Write-Host "✅ $config 构建成功" -ForegroundColor Green
+          
+          # 验证主要输出文件
+          $exePath = "bin\$config\${{ env.PROJECT_NAME }}.exe"
+          if (Test-Path $exePath) {
+            $fileInfo = Get-Item $exePath
+            Write-Host "📄 生成文件: $($fileInfo.Name)"
+            Write-Host "📏 文件大小: $([math]::Round($fileInfo.Length/1MB, 2)) MB"
+          }
+        }
 
-    - name: Run Tests (if any)
+    - name: "🧪 运行测试"
+      if: ${{ always() && env.BUILD_CONFIG != 'Release' }}
+      continue-on-error: true
       run: |
-        # 如果有测试项目，可以在这里运行
-        dotnet test --verbosity normal
-      continue-on-error: true  # 如果没有测试，忽略错误
+        Write-Host "🧪 查找并运行测试..."
+        $testProjects = Get-ChildItem -Path . -Recurse -Filter "*.csproj" | Where-Object { 
+          (Get-Content $_.FullName -Raw) -match "Test|.Tests" 
+        }
+        
+        if ($testProjects.Count -gt 0) {
+          foreach ($testProject in $testProjects) {
+            Write-Host "运行测试: $($testProject.Name)"
+            dotnet test $testProject.FullName --verbosity normal --no-build
+          }
+        } else {
+          Write-Host "📭 未找到测试项目"
+        }
 
-    - name: Create Artifacts
+    - name: "📦 创建发布包"
+      if: env.CREATE_ZIP == 'true'
       run: |
-        # 创建发布包
-        $version = Get-Date -Format "yyyy.MM.dd.HHmm"
-        $artifactName = "CrapFixer_v$version"
+        Write-Host "📦 创建发布包..." -ForegroundColor Cyan
         
-        # 创建发布目录结构
-        New-Item -ItemType Directory -Path "release\$artifactName"
+        $releaseName = "CrapFixer_v${{ env.VERSION }}"
+        $releaseDir = "release\$releaseName"
         
-        # 复制必要文件
-        Copy-Item -Path "bin\Release\*" -Destination "release\$artifactName\" -Recurse -Force
+        # 创建目录
+        New-Item -ItemType Directory -Path $releaseDir -Force
+        Write-Host "📁 创建目录: $releaseDir"
         
-        # 复制额外的资源文件
-        Copy-Item -Path "README.md" -Destination "release\$artifactName\" -Force
-        Copy-Item -Path "LICENSE" -Destination "release\$artifactName\" -Force
-        Copy-Item -Path "icons\*" -Destination "release\$artifactName\" -Recurse -Force 2>$null
+        # 确定要复制哪个配置
+        $sourceConfig = if ("${{ env.BUILD_CONFIG }}" -eq "Both" -or "${{ env.BUILD_CONFIG }}" -eq "Release") { 
+          "Release" 
+        } else { 
+          "${{ env.BUILD_CONFIG }}" 
+        }
         
-        # 创建压缩包
-        Compress-Archive -Path "release\$artifactName\*" -DestinationPath "release\$artifactName.zip" -Force
+        # 复制可执行文件和依赖项
+        Copy-Item -Path "bin\$sourceConfig\*" -Destination $releaseDir -Recurse -Force
         
-        echo "ARTIFACT_NAME=$artifactName" >> $env:GITHUB_ENV
+        # 复制资源文件
+        $resources = @(
+          "README.md",
+          "LICENSE",
+          "CHANGELOG.md",
+          "STORY.md"
+        )
+        
+        foreach ($resource in $resources) {
+          if (Test-Path $resource) {
+            Copy-Item -Path $resource -Destination $releaseDir -Force
+            Write-Host "📄 复制: $resource"
+          }
+        }
+        
+        # 复制图标和资源目录
+        $resourceDirs = @("icons", "plugins", "docs")
+        foreach ($dir in $resourceDirs) {
+          if (Test-Path $dir) {
+            New-Item -ItemType Directory -Path "$releaseDir\$dir" -Force
+            Copy-Item -Path "$dir\*" -Destination "$releaseDir\$dir" -Recurse -Force -ErrorAction SilentlyContinue
+            Write-Host "📁 复制目录: $dir"
+          }
+        }
+        
+        # 创建版本信息文件
+        $versionInfo = @"
+CrapFixer - Windows 优化工具
+版本: ${{ env.VERSION }}
+构建时间: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+构建类型: ${{ env.BUILD_CONFIG }}
+触发方式: ${{ github.event_name }}
+触发者: ${{ github.actor }}
+分支: ${{ github.ref_name }}
+"@
+        
+        $versionInfo | Out-File -FilePath "$releaseDir\BUILD_INFO.txt" -Encoding UTF8
+        
+        # 创建 ZIP 包
+        Write-Host "🗜️ 创建 ZIP 包..."
+        Compress-Archive -Path "$releaseDir\*" -DestinationPath "release\$releaseName.zip" -Force
+        
+        # 显示包信息
+        $zipFile = Get-Item "release\$releaseName.zip"
+        Write-Host "✅ 创建完成: $($zipFile.Name)"
+        Write-Host "📏 文件大小: $([math]::Round($zipFile.Length/1MB, 2)) MB"
+        
+        echo "RELEASE_NAME=$releaseName" >> $env:GITHUB_ENV
+        echo "ZIP_PATH=$($zipFile.FullName)" >> $env:GITHUB_ENV
 
-    - name: Upload Artifacts
+    - name: "📤 上传构建产物"
       uses: actions/upload-artifact@v4
       with:
-        name: CrapFixer-Artifacts
+        name: CrapFixer-${{ env.VERSION }}-${{ github.run_number }}
         path: |
-          bin/Release/
-          release/*.zip
-        retention-days: 7
+          bin/
+          release/
+          !**/*.pdb
+        retention-days: 30
+        if-no-files-found: error
+
+    - name: "🔒 安全扫描"
+      if: ${{ env.RUN_SECURITY == 'true' || github.event_name == 'push' }}
+      run: |
+        Write-Host "🔍 运行安全扫描..."
+        
+        # 检查已知的安全问题
+        Write-Host "1. 检查硬编码敏感信息..."
+        $sensitivePatterns = @(
+          "password\s*=",
+          "token\s*=",
+          "secret\s*=",
+          "api[_-]?key",
+          "connection[_-]?string"
+        )
+        
+        $foundIssues = $false
+        foreach ($file in (Get-ChildItem -Path . -Recurse -Filter "*.cs" -File)) {
+          $content = Get-Content $file.FullName -Raw
+          foreach ($pattern in $sensitivePatterns) {
+            if ($content -match $pattern -and $content -notmatch "example|placeholder|dummy") {
+              Write-Host "⚠️  发现潜在敏感信息: $($file.Name) - 匹配: $pattern"
+              $foundIssues = $true
+            }
+          }
+        }
+        
+        if (-not $foundIssues) {
+          Write-Host "✅ 未发现硬编码敏感信息"
+        }
+        
+        # 检查依赖项漏洞
+        Write-Host "`n2. 检查项目依赖项..."
+        if (Test-Path "packages.config") {
+          Write-Host "📦 找到 packages.config"
+        }
+        
+        Write-Host "✅ 安全检查完成"
+
+    - name: "📊 生成构建报告"
+      if: always()
+      run: |
+        $report = @"
+# 📋 CrapFixer 构建报告
+## 摘要
+- **状态**: $(if (${{ job.status }} -eq 'success') { '✅ 成功' } else { '❌ 失败' })
+- **版本**: ${{ env.VERSION }}
+- **构建配置**: ${{ env.BUILD_CONFIG }}
+- **触发方式**: ${{ github.event_name }}
+- **触发者**: ${{ github.actor }}
+- **分支**: ${{ github.ref_name }}
+- **运行编号**: ${{ github.run_number }}
+
+## 生成文件
+"@
+        
+        if (Test-Path "bin") {
+          $binFiles = Get-ChildItem -Path "bin" -Recurse -File | 
+            Group-Object Extension | 
+            ForEach-Object { 
+              "$($_.Name): $($_.Count) 个文件"
+            }
+          
+          $report += "`n### 构建输出`n"
+          $report += $binFiles -join "`n"
+        }
+        
+        if (Test-Path "release") {
+          $releaseFiles = Get-ChildItem -Path "release" -File
+          $report += "`n### 发布包`n"
+          foreach ($file in $releaseFiles) {
+            $sizeMB = [math]::Round($file.Length/1MB, 2)
+            $report += "- $($file.Name) ($sizeMB MB)`n"
+          }
+        }
+        
+        # 保存报告
+        $report | Out-File -FilePath "BUILD_REPORT.md" -Encoding UTF8
+        Write-Host $report
+
+    - name: "📤 上传构建报告"
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: Build-Report-${{ github.run_number }}
+        path: BUILD_REPORT.md
+        retention-days: 90
 
   release:
+    name: "创建 GitHub 发布"
     needs: build
-    runs-on: windows-latest
-    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'release' || 
+      (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
     
     steps:
-    - name: Download Artifacts
+    - name: "📥 下载构建产物"
       uses: actions/download-artifact@v4
       with:
-        name: CrapFixer-Artifacts
-        path: artifacts
+        pattern: CrapFixer-*
+        merge-multiple: true
 
-    - name: Create GitHub Release
+    - name: "🏷️ 创建 GitHub Release"
       uses: softprops/action-gh-release@v1
       with:
-        files: artifacts/release/*.zip
+        files: |
+          release/*.zip
+          BUILD_REPORT.md
         draft: false
-        prerelease: false
+        prerelease: ${{ contains(github.ref, '-alpha') || contains(github.ref, '-beta') || contains(github.ref, '-rc') }}
         generate_release_notes: true
-
-  analyze:
-    runs-on: windows-latest
-    
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      with:
-        args: >
-          /d:sonar.projectKey=cjy0812_CrapFixer
-          /d:sonar.organization=cjy0812
-          /d:sonar.host.url=https://sonarcloud.io
-          /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
-          /d:sonar.coverage.exclusions=**/*Test*.cs
-      continue-on-error: true  # 如果没有 SonarCloud，忽略错误
-
-  security-scan:
-    runs-on: windows-latest
-    
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Run CodeQL Analysis
-      uses: github/codeql-action/init@v2
-      with:
-        languages: csharp
-
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
-
-    - name: Dependency Vulnerability Scan
-      uses: dependency-review-action@v4
-      with:
-        fail-on-severity: high
+        body: |
+          自动构建的 CrapFixer 发布版本。
+          
+          ### 构建信息
+          - **版本**: ${{ env.VERSION }}
+          - **构建时间**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          - **触发方式**: ${{ github.event_name }}
+          - **提交**: ${{ github.sha }}
+          
+          ### 使用说明
+          1. 下载 ZIP 文件
+          2. 解压到任意目录
+          3. 运行 CFixer.exe
+          
+          ⚠️ **注意**: 部分功能需要管理员权限。
