@@ -13,18 +13,18 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Suggested Value: {recommendedValue} (Left – feels like home if you're coming from Windows 10)";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Suggested Value: {2} (Left – feels like home if you're coming from Windows 10)", keyName, valueName, recommendedValue);
         }
 
 
         public override string ID()
         {
-            return "Align Start button to left";
+            return L("ID", "Align Start button to left");
         }
 
         public override string Info()
         {
-            return "This feature will align the Start button to left";
+            return L("Info", "This feature will align the Start button to left");
         }
 
         public override Task<bool> CheckFeature()

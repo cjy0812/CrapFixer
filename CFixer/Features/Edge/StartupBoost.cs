@@ -13,12 +13,18 @@ namespace Settings.Edge
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
-        public override string ID() => "Disable Start Boost";
+        public override string ID()
+        {
+            return L("ID", "Disable Start Boost");
+        }
 
-        public override string Info() => "Enables Microsoft Edge processes to initialize at operating system startup and restart in the background after the last browser window has been closed";
+        public override string Info()
+        {
+            return L("Info", "Enables Microsoft Edge processes to initialize at operating system startup and restart in the background after the last browser window has been closed");
+        }
 
         public override Task<bool> CheckFeature()
         {

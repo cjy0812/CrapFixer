@@ -13,12 +13,18 @@ namespace Settings.Edge
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
-        public override string ID() => "Don't Show First Run Experience";
+        public override string ID()
+        {
+            return L("ID", "Don't Show First Run Experience");
+        }
 
-        public override string Info() => "Hide home screen and 'Getting Started' on initial launch (from version 80 onwards)";
+        public override string Info()
+        {
+            return L("Info", "Hide home screen and 'Getting Started' on initial launch (from version 80 onwards)");
+        }
 
         public override Task<bool> CheckFeature()
         {

@@ -13,17 +13,17 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Don't use personalized lock screen";
+            return L("ID", "Don't use personalized lock screen");
         }
 
         public override string Info()
         {
-            return "This feature will disable the personalized lock screen.";
+            return L("Info", "This feature will disable the personalized lock screen.");
         }
 
         public override Task<bool> CheckFeature()

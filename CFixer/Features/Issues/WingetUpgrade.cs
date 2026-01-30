@@ -10,17 +10,17 @@ namespace Settings.System
     {
         public override string GetFeatureDetails()
         {
-            return "winget upgrade --include-unknown";
+            return L("GetFeatureDetails", "winget upgrade --include-unknown");
         }
 
         public override string ID()
         {
-            return "Winget App Updates";
+            return L("ID", "Winget App Updates");
         }
 
         public override string Info()
         {
-            return "Automatically searches for available app updates using the Windows package manager 'winget' and installs them in a new Windows Terminal window. It runs 'winget upgrade --include-unknown' to list all available updates, including manually installed apps, and then 'winget upgrade --all --include-unknown' to install them. No manual interaction is required.";
+            return L("Info", "Automatically searches for available app updates using the Windows package manager 'winget' and installs them in a new Windows Terminal window. It runs 'winget upgrade --include-unknown' to list all available updates, including manually installed apps, and then 'winget upgrade --all --include-unknown' to install them. No manual interaction is required.");
         }
 
         public override async Task<bool> CheckFeature()

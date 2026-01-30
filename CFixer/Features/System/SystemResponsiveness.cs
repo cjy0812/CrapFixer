@@ -13,17 +13,17 @@ namespace Settings.System
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Optimize System Responsiveness";
+            return L("ID", "Optimize System Responsiveness");
         }
 
         public override string Info()
         {
-            return "Enhances system responsiveness by prioritizing CPU resources for foreground tasks, improving performance during active use.";
+            return L("Info", "Enhances system responsiveness by prioritizing CPU resources for foreground tasks, improving performance during active use.");
         }
 
         public override Task<bool> CheckFeature()

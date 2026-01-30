@@ -18,17 +18,17 @@ namespace Settings.Gaming
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} |Value: {valueName} | {valueName2} | {keyName2} | {valueName3} ";
+            return L("GetFeatureDetails", "{0} |Value: {1} | {2} | {3} | {4}", keyName, valueName, valueName2, keyName2, valueName3);
         }
 
         public override string ID()
         {
-            return "Disable Game DVR";
+            return L("ID", "Disable Game DVR");
         }
 
         public override string Info()
         {
-            return "This feature will disable Game DVR.";
+            return L("Info", "This feature will disable Game DVR.");
         }
 
         public override Task<bool> CheckFeature()

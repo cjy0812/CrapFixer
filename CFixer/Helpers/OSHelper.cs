@@ -68,10 +68,10 @@ namespace OSHelper
                 }
                 catch (Exception ex)
                 {
-                    return $"OS info unavailable: {ex.Message}";
+                    return string.Format(Properties.Resources.ResourceManager.GetString("OSHelper.OsInfoUnavailable"), ex.Message);
                 }
 
-                return "OS not supported";
+                return Properties.Resources.ResourceManager.GetString("OSHelper.OsNotSupported");
             });
         }
     }

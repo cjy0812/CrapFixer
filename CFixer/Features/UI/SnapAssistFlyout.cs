@@ -13,17 +13,17 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Disable Snap Assist Flyout";
+            return L("ID", "Disable Snap Assist Flyout");
         }
 
         public override string Info()
         {
-            return "This feature disables the Snap Assist flyout, which appears when you snap a window.";
+            return L("Info", "This feature disables the Snap Assist flyout, which appears when you snap a window.");
         }
 
         public override Task<bool> CheckFeature()

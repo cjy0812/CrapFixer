@@ -13,17 +13,17 @@ namespace Settings.System
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: 0xFFFFFFFF (decimal: {uint.MaxValue})";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: 0xFFFFFFFF (decimal: {2})", keyName, valueName, uint.MaxValue);
         }
 
         public override string ID()
         {
-            return "Disable Network Throttling";
+            return L("ID", "Disable Network Throttling");
         }
 
         public override string Info()
         {
-            return "Disables the Windows network throttling mechanism to potentially improve performance for streaming, gaming, or real-time applications.";
+            return L("Info", "Disables the Windows network throttling mechanism to potentially improve performance for streaming, gaming, or real-time applications.");
         }
 
         public override Task<bool> CheckFeature()

@@ -14,17 +14,17 @@ namespace Settings.System
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Values: {valueName1}, {valueName2} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Values: {1}, {2} | Recommended Value: {3}", keyName, valueName1, valueName2, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Show BSOD details instead of sad smiley";
+            return L("ID", "Show BSOD details instead of sad smiley");
         }
 
         public override string Info()
         {
-            return "This method displays the full classic BSOD with technical error details instead of the simplified sad face version.";
+            return L("Info", "This method displays the full classic BSOD with technical error details instead of the simplified sad face version.");
         }
 
         public override Task<bool> CheckFeature()

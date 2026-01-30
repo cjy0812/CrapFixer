@@ -280,15 +280,15 @@ namespace CrapFixer
             {
                 string info = fn.Feature.Info();
                 MessageBox.Show(
-                    !string.IsNullOrEmpty(info) ? info : "No additional information available.",
-                    $"Help: {fn.Name}",
+                    !string.IsNullOrEmpty(info) ? info : Properties.Resources.ResourceManager.GetString("FeatureManager.NoAdditionalInfo"),
+                    string.Format(Properties.Resources.ResourceManager.GetString("FeatureManager.HelpTitle"), fn.Name),
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
                 // Optional online help
                 var result = MessageBox.Show(
-                    "Would you like to search online for more information about this feature?",
-                    "Online Help",
+                    Properties.Resources.ResourceManager.GetString("FeatureManager.SearchOnlinePrompt"),
+                    Properties.Resources.ResourceManager.GetString("FeatureManager.OnlineHelpTitle"),
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
 
@@ -309,8 +309,8 @@ namespace CrapFixer
             // Show help for plugins
             if (!PluginManager.ShowHelp(node))
             {
-                MessageBox.Show("⚠️ No feature or plugin selected, or help info unavailable.",
-                    "Help",
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("FeatureManager.NoFeatureOrPluginSelected"),
+                    Properties.Resources.ResourceManager.GetString("FeatureManager.HelpSimple"),
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
             }

@@ -11,17 +11,17 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName}";
+            return L("GetFeatureDetails", "{0}", keyName);
         }
 
         public override string ID()
         {
-            return "Show Full context menus in Windows 11";
+            return L("ID", "Show Full context menus in Windows 11");
         }
 
         public override string Info()
         {
-            return "This feature will enable full context menus";
+            return L("Info", "This feature will enable full context menus");
         }
 
         public override Task<bool> CheckFeature()

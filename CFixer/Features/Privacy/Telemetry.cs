@@ -10,13 +10,19 @@ namespace Settings.Privacy
         private const string dataCollection = @"HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\DataCollection";
         private const string diagTrack = @"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\DiagTrack";
 
-        public override string ID() => "Turn off Telemetry data collection";
+        public override string ID()
+        {
+            return L("ID", "Turn off Telemetry data collection");
+        }
 
-        public override string Info() => "This feature will turn off telemetry data collection and prevent the data from being sent to Microsoft.";
+        public override string Info()
+        {
+            return L("Info", "This feature will turn off telemetry data collection and prevent the data from being sent to Microsoft.");
+        }
 
         public override string GetFeatureDetails()
         {
-            return $"{dataCollection} | {diagTrack}";
+            return L("GetFeatureDetails", "{0} | {1}", dataCollection, diagTrack);
         }
 
         public override Task<bool> CheckFeature()

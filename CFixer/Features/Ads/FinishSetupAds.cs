@@ -11,13 +11,19 @@ namespace Settings.Ads
         private const string valueName = "ScoobeSystemSettingEnabled";
         private const int recommendedValue = 0;
 
-        public override string ID() => "Disable Finish Setup Ads";
-
-        public override string Info() => "This feature will disable the \"Lets finish setting up your device\" and other advertising.";
-
-        public override string GetFeatureDetails()
+        public override string ID()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("ID", "Disable Finish Setup Ads");
+        }
+
+        public override string Info()
+        {
+            return L("Info", "This feature will disable the \"Lets finish setting up your device\" and other advertising.");
+        }
+
+n        public override string GetFeatureDetails()
+        {
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override Task<bool> CheckFeature()

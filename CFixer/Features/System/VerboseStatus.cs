@@ -13,17 +13,17 @@ namespace Settings.System
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Enable Verbose Logon status messages";
+            return L("ID", "Enable Verbose Logon status messages");
         }
 
         public override string Info()
         {
-            return "This method allows you to see what processes are hanging when shutting down and turning on the machine.";
+            return L("Info", "This method allows you to see what processes are hanging when shutting down and turning on the machine.");
         }
 
         public override Task<bool> CheckFeature()

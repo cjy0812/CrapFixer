@@ -13,17 +13,17 @@ namespace Settings.Ads
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Disable Start menu Ads";
+            return L("ID", "Disable Start menu Ads");
         }
 
         public override string Info()
         {
-            return "This feature will disable ads in the start menu.";
+            return L("Info", "This feature will disable ads in the start menu.");
         }
 
         public override Task<bool> CheckFeature()

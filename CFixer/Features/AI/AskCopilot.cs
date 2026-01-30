@@ -14,17 +14,17 @@ namespace Settings.AI
 
         public override string GetFeatureDetails()
         {
-            return $"{fullKeyPath} | Value: {valueName} = \"{displayValue}\" | Blocks Copilot context menu entry.";
+            return L("GetFeatureDetails", "{0} | Value: {1} = \"{2}\" | Blocks Copilot context menu entry.", fullKeyPath, valueName, displayValue);
         }
 
         public override string ID()
         {
-            return "Remove Ask Copilot from context menu";
+            return L("ID", "Remove Ask Copilot from context menu");
         }
 
         public override string Info()
         {
-            return "Blocks the 'Ask Copilot' entry in the Windows 11 context menu by disabling its Shell Extension.";
+            return L("Info", "Blocks the 'Ask Copilot' entry in the Windows 11 context menu by disabling its Shell Extension.");
         }
 
         public override Task<bool> CheckFeature()

@@ -13,12 +13,18 @@ namespace Settings.Edge
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
-        public override string ID() => "Disable Browser sign in and sync services";
+        public override string ID()
+        {
+            return L("ID", "Disable Browser sign in and sync services");
+        }
 
-        public override string Info() => "This setting controls whether a user can sign into Microsoft Edge with an account to use services such as sync and single sign on";
+        public override string Info()
+        {
+            return L("Info", "This setting controls whether a user can sign into Microsoft Edge with an account to use services such as sync and single sign on");
+        }
 
         public override Task<bool> CheckFeature()
         {

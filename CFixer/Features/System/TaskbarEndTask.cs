@@ -13,17 +13,17 @@ namespace Settings.System
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Enable End Task";
+            return L("ID", "Enable End Task");
         }
 
         public override string Info()
         {
-            return "Adds 'End Task' to the Windows 11 taskbar context menu, allowing you to directly kill unresponsive apps.";
+            return L("Info", "Adds 'End Task' to the Windows 11 taskbar context menu, allowing you to directly kill unresponsive apps.");
         }
 
         public override Task<bool> CheckFeature()

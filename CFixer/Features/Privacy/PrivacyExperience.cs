@@ -11,13 +11,19 @@ namespace Settings.Privacy
         private const string valueName = "DisablePrivacyExperience";
         private const int recommendedValue = 0;
 
-        public override string ID() => "Disable Privacy Settings Experience at sign-in";
+        public override string ID()
+        {
+            return L("ID", "Disable Privacy Settings Experience at sign-in");
+        }
 
-        public override string Info() => "This feature will disable Privacy Settings Experience at sign-in.";
+        public override string Info()
+        {
+            return L("Info", "This feature will disable Privacy Settings Experience at sign-in.");
+        }
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override Task<bool> CheckFeature()

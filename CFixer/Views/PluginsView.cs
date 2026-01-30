@@ -75,7 +75,7 @@ namespace CFixer.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading plugins: " + ex.Message);
+                MessageBox.Show(string.Format(Properties.Resources.ResourceManager.GetString("PluginsView.ErrorLoadingPlugins"), ex.Message));
             }
         }
 
@@ -153,7 +153,7 @@ namespace CFixer.Views
             var checkedItems = listPlugins.CheckedItems.Cast<ListViewItem>().ToList();
             if (checkedItems.Count == 0)
             {
-                MessageBox.Show("Please check one or more plugins to download.");
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("PluginsView.PleaseSelectPluginsToDownload"));
                 return;
             }
 
@@ -192,7 +192,7 @@ namespace CFixer.Views
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Failed to download {plugin.Name}: {ex.Message}");
+                        MessageBox.Show(string.Format(Properties.Resources.ResourceManager.GetString("PluginsView.FailedToDownload"), plugin.Name, ex.Message));
                     }
 
                     progressBarDownload.Value = ++done;
@@ -227,7 +227,7 @@ namespace CFixer.Views
                 item.SubItems[1].Text = "Updated";
             }
 
-            MessageBox.Show("All plugins updated.");
+            MessageBox.Show(Properties.Resources.ResourceManager.GetString("PluginsView.AllPluginsUpdated"));
         }
 
         private void btnPluginRemove_Click(object sender, EventArgs e)
@@ -238,7 +238,7 @@ namespace CFixer.Views
 
             if (checkedItems.Count == 0)
             {
-                MessageBox.Show("No plugins selected.");
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("PluginsView.NoPluginsSelected"));
                 return;
             }
 
@@ -258,14 +258,14 @@ namespace CFixer.Views
                 item.Checked = false;
             }
 
-            MessageBox.Show("Selected plugins removed.");
+            MessageBox.Show(Properties.Resources.ResourceManager.GetString("PluginsView.SelectedPluginsRemoved"));
         }
 
         private void btnPluginEdit_Click(object sender, EventArgs e)
         {
             if (listPlugins.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Please select a plugin first.");
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("PluginsView.PleaseSelectPluginFirst"));
                 return;
             }
 
@@ -276,7 +276,7 @@ namespace CFixer.Views
 
             if (!File.Exists(path))
             {
-                MessageBox.Show("Plugin file not found. Please install the plugin first.");
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("PluginsView.PluginFileNotFound"));
                 return;
             }
 
@@ -288,7 +288,7 @@ namespace CFixer.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not open plugin: " + ex.Message);
+                MessageBox.Show(string.Format(Properties.Resources.ResourceManager.GetString("PluginsView.CouldNotOpenPlugin"), ex.Message));
             }
         }
 
@@ -299,14 +299,14 @@ namespace CFixer.Views
         {
             if (listPlugins.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Please select a plugin first.");
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("PluginsView.PleaseSelectPluginFirst"));
                 return;
             }
 
             var plugin = listPlugins.SelectedItems[0].Tag as PluginEntry;
             if (plugin != null)
             {
-                MessageBox.Show(plugin.Description, $"Info: {plugin.Name}");
+                MessageBox.Show(plugin.Description, string.Format(Properties.Resources.ResourceManager.GetString("PluginsView.InfoTitle"), plugin.Name));
             }
         }
 

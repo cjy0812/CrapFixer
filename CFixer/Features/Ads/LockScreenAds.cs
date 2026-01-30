@@ -12,13 +12,19 @@ namespace Settings.Ads
         private const string valueName2 = "SubscribedContent-338387Enabled";
         private const int recommendedValue = 0;
 
-        public override string ID() => "Disable Lock Screen Tips and Ads";
+        public override string ID()
+        {
+            return L("ID", "Disable Lock Screen Tips and Ads");
+        }
 
-        public override string Info() => "This feature will disable tips and ads on the lock screen.";
+        public override string Info()
+        {
+            return L("Info", "This feature will disable tips and ads on the lock screen.");
+        }
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override Task<bool> CheckFeature()

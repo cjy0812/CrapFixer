@@ -14,13 +14,19 @@ namespace Settings.Ads
 
         private const int recommendedValue = 0;
 
-        public override string ID() => "Disable Settings Ads";
+        public override string ID()
+        {
+            return L("ID", "Disable Settings Ads");
+        }
 
-        public override string Info() => "This feature will disable ads in settings.";
+        public override string Info()
+        {
+            return L("Info", "This feature will disable ads in settings.");
+        }
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} + {valueName2} + {valueName3} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} + {2} + {3} | Recommended Value: {4}", keyName, valueName, valueName2, valueName3, recommendedValue);
         }
 
         public override Task<bool> CheckFeature()

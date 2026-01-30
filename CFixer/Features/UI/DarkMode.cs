@@ -13,17 +13,17 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended: {recommendedValue} (Dark mode – preferred for a modern look, but up to you)";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended: {2} (Dark mode – preferred for a modern look, but up to you)", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Enable Dark Mode for Apps";
+            return L("ID", "Enable Dark Mode for Apps");
         }
 
         public override string Info()
         {
-            return "This feature enables Dark Mode for apps in Windows 11.";
+            return L("Info", "This feature enables Dark Mode for apps in Windows 11.");
         }
 
         public override Task<bool> CheckFeature()
@@ -72,17 +72,17 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Suggestion: {recommendedValue} (Dark mode – easy on the eyes, but totally your call)";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Suggestion: {2} (Dark mode – easy on the eyes, but totally your call)", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Enable Dark Mode for System";
+            return L("ID", "Enable Dark Mode for System");
         }
 
         public override string Info()
         {
-            return "This feature enables Dark Mode for Windows system UI (e.g., taskbar, start menu).";
+            return L("Info", "This feature enables Dark Mode for Windows system UI (e.g., taskbar, start menu).");
         }
 
         public override Task<bool> CheckFeature()

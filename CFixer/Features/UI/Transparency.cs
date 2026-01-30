@@ -13,18 +13,18 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Suggestion: {recommendedValue} (No transparency – smoother performance, still stylish)";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Suggestion: {2} (No transparency – smoother performance, still stylish)", keyName, valueName, recommendedValue);
         }
 
 
         public override string ID()
         {
-            return "Disable Transparency Effects";
+            return L("ID", "Disable Transparency Effects");
         }
 
         public override string Info()
         {
-            return "This feature disables transparency effects for Start menu, taskbar, and other surfaces.";
+            return L("Info", "This feature disables transparency effects for Start menu, taskbar, and other surfaces.");
         }
 
         public override Task<bool> CheckFeature()

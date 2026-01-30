@@ -13,17 +13,17 @@ namespace Settings.Privacy
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Disable location tracking";
+            return L("ID", "Disable location tracking");
         }
 
         public override string Info()
         {
-            return "Disable location tracking (prevents Windows from accessing your location)";
+            return L("Info", "Disable location tracking (prevents Windows from accessing your location)");
         }
 
         public override Task<bool> CheckFeature()

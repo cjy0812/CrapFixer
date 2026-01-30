@@ -13,12 +13,18 @@ namespace Settings.Edge
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
-        public override string ID() => "Don't Show Quick links in new tab page";
+        public override string ID()
+        {
+            return L("ID", "Don't Show Quick links in new tab page");
+        }
 
-        public override string Info() => "By default, when you open a new tab, you see a Bing search bar, Bing image of the day set as the page background. For supported websites, Quick Links on the New Tab page can display recent updates right in the tile";
+        public override string Info()
+        {
+            return L("Info", "By default, when you open a new tab, you see a Bing search bar, Bing image of the day set as the page background. For supported websites, Quick Links on the New Tab page can display recent updates right in the tile");
+        }
 
         public override Task<bool> CheckFeature()
         {

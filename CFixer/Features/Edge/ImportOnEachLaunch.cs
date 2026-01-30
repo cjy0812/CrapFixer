@@ -13,12 +13,18 @@ namespace Settings.Edge
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
-        public override string ID() => "Don't Allow to Import of data from other browsers on each launch";
+        public override string ID()
+        {
+            return L("ID", "Don't Allow to Import of data from other browsers on each launch");
+        }
 
-        public override string Info() => "Allow import of data from other browsers on each Microsoft Edge launch";
+        public override string Info()
+        {
+            return L("Info", "Allow import of data from other browsers on each Microsoft Edge launch");
+        }
 
         public override Task<bool> CheckFeature()
         {

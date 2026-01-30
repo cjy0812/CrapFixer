@@ -12,9 +12,15 @@ namespace Settings.Issues
         private readonly string tempPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp");
         private const int cleanupSetNumber = 1;
 
-        public override string ID() => "Basic Disk Cleanup";
+        public override string ID()
+        {
+            return L("ID", "Basic Disk Cleanup");
+        }
 
-        public override string Info() => "Deletes all temporary files from the user's Temp folder. Then, the built-in Disk Cleanup utility (cleanmgr) is run.";
+        public override string Info()
+        {
+            return L("Info", "Deletes all temporary files from the user's Temp folder. Then, the built-in Disk Cleanup utility (cleanmgr) is run.");
+        }
 
         public override Task<bool> CheckFeature()
         {
@@ -38,12 +44,12 @@ namespace Settings.Issues
             try
             {
                 var totalSize = GetDirectorySize(tempPath);
-                return $"Temp folder size: {totalSize} MB (including cleanmgr /sagerun:1 in the next run)";
+                return L("GetFeatureDetails.Ok", "Temp folder size: {0} MB (including cleanmgr /sagerun:1 in the next run)", totalSize);
             }
             catch (Exception ex)
             {
                 Logger.Log($"Error accessing Temp folder: {ex.Message}", LogLevel.Error);
-                return $"Temp folder not accessible: {tempPath}";
+                return L("GetFeatureDetails.Error", "Temp folder not accessible: {0}", tempPath);
             }
         }
 

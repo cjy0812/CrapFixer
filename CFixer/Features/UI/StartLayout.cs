@@ -13,17 +13,17 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Pin more Apps on start menu";
+            return L("ID", "Pin more Apps on start menu");
         }
 
         public override string Info()
         {
-            return "This feature will allow pinning more Apps on start menu";
+            return L("Info", "This feature will allow pinning more Apps on start menu");
         }
 
         public override Task<bool> CheckFeature()

@@ -13,17 +13,17 @@ namespace Settings.AI
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Don't Show Copilot in Taskbar";
+            return L("ID", "Don't Show Copilot in Taskbar");
         }
 
         public override string Info()
         {
-            return "This feature will disable Copilot in Taskbar.";
+            return L("Info", "This feature will disable Copilot in Taskbar.");
         }
 
         public override Task<bool> CheckFeature()

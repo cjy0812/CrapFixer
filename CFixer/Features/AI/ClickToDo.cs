@@ -18,20 +18,19 @@ namespace Settings.UI
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Set to: {recommendedValue} (disables Click to Do, removing it from context menus). " +
-                   "Note: This setting only applies on Copilot+ PCs with Windows 11 24H2 or newer.";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Set to: {2} (disables Click to Do, removing it from context menus). \r\nNote: This setting only applies on Copilot+ PCs with Windows 11 24H2 or newer.", keyName, valueName, recommendedValue);
         }
 
 
 
         public override string ID()
         {
-            return "Disable Click to Do (Only Copilot+ PCs)";
+            return L("ID", "Disable Click to Do (Only Copilot+ PCs)");
         }
 
         public override string Info()
         {
-            return "Disables Click to Do entirely, including its context menu entry which uses on-device AI to suggest actions based on screen content. Only available on Copilot+ PCs with Windows 11 24H2 or newer.";
+            return L("Info", "Disables Click to Do entirely, including its context menu entry which uses on-device AI to suggest actions based on screen content. Only available on Copilot+ PCs with Windows 11 24H2 or newer.");
         }
 
         public override Task<bool> CheckFeature()

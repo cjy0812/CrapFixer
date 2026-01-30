@@ -11,13 +11,19 @@ namespace Settings.Ads
         private const string valueName = "SubscribedContent-310093Enabled";
         private const int recommendedValue = 0;
 
-        public override string ID() => "Disable Welcome Experience Ads";
+        public override string ID()
+        {
+            return L("ID", "Disable Welcome Experience Ads");
+        }
 
-        public override string Info() => "This feature will disable ads in the welcome experience.";
+        public override string Info()
+        {
+            return L("Info", "This feature will disable ads in the welcome experience.");
+        }
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override Task<bool> CheckFeature()

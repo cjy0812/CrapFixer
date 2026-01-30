@@ -13,18 +13,18 @@ namespace Settings.AI
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended: {recommendedValue} (Recall off – protect your privacy, prevent AI from accessing personal data)";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended: {2} (Recall off – protect your privacy, prevent AI from accessing personal data)", keyName, valueName, recommendedValue);
         }
 
 
         public override string ID()
         {
-            return "Turn off Recall in Windows 11";
+            return L("ID", "Turn off Recall in Windows 11");
         }
 
         public override string Info()
         {
-            return "This will remove Recall from Windows 11 24H2";
+            return L("Info", "This will remove Recall from Windows 11 24H2");
         }
 
         public override Task<bool> CheckFeature()

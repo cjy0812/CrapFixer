@@ -56,9 +56,8 @@ namespace CFixer.Views
         private async void checkInstallIcons_CheckedChanged(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
-            "By default, buttons have no icons to reduce app size. Enable this to download and display navigation icons." +
-            "\nWould you like to install it now?",
-                                    "Icons Pack Detected",
+            Properties.Resources.ResourceManager.GetString("SettingsView.IconsPackPrompt"),
+                                    Properties.Resources.ResourceManager.GetString("SettingsView.IconsPackDetectedTitle"),
                                     MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Information
                                     );
@@ -91,8 +90,8 @@ namespace CFixer.Views
                     }
 
                     MessageBox.Show(
-                        "All icons have been successfully installed in the 'icons' folder!\n\n💖 Love CrapFixer? Consider supporting me with a small donation to keep this tool alive and improving!",
-                        "Icons Installed",
+                        Properties.Resources.ResourceManager.GetString("SettingsView.IconsInstalled"),
+                        Properties.Resources.ResourceManager.GetString("SettingsView.IconsInstalledTitle"),
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
                     );
@@ -102,8 +101,8 @@ namespace CFixer.Views
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("❌ An error occurred while downloading the icons:\n" + ex.Message,
-                        "Download Failed",
+                    MessageBox.Show(string.Format(Properties.Resources.ResourceManager.GetString("SettingsView.IconsDownloadError"), ex.Message),
+                        Properties.Resources.ResourceManager.GetString("SettingsView.DownloadFailedTitle"),
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }

@@ -13,17 +13,17 @@ namespace Settings.UI
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Disable Search Box Suggestions";
+            return L("ID", "Disable Search Box Suggestions");
         }
 
         public override string Info()
         {
-            return "This feature disables Bing search and web suggestions in the Windows Start Menu.";
+            return L("Info", "This feature disables Bing search and web suggestions in the Windows Start Menu.");
         }
 
         public override Task<bool> CheckFeature()

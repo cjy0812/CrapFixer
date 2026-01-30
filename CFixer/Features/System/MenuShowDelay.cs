@@ -13,17 +13,17 @@ namespace Settings.System
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: \"{recommendedValue}\" (faster menu response)";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: \"{2}\" (faster menu response)", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Speed Up Menu Show Delay";
+            return L("ID", "Speed Up Menu Show Delay");
         }
 
         public override string Info()
         {
-            return "Speeds up the appearance of menus and submenus by lowering the default delay. This improves the perceived responsiveness of the UI.";
+            return L("Info", "Speeds up the appearance of menus and submenus by lowering the default delay. This improves the perceived responsiveness of the UI.");
         }
 
         public override Task<bool> CheckFeature()

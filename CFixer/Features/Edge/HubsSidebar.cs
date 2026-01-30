@@ -13,12 +13,18 @@ namespace Settings.Edge
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
-        public override string ID() => "Disable Copilot Symbol in Edge";
+        public override string ID()
+        {
+            return L("ID", "Disable Copilot Symbol in Edge");
+        }
 
-        public override string Info() => "This feature will disable Copilot in Microsoft Edge.";
+        public override string Info()
+        {
+            return L("Info", "This feature will disable Copilot in Microsoft Edge.");
+        }
 
         public override Task<bool> CheckFeature()
         {

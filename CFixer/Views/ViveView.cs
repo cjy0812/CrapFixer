@@ -106,7 +106,7 @@ namespace CFixer.Views
         {
             if (string.IsNullOrEmpty(viveToolPath))
             {
-                MessageBox.Show("ViVeTool not found. Please ensure it is installed in the plugins folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("ViveView.ViveToolNotFound"), Properties.Resources.ResourceManager.GetString("Common.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -144,7 +144,7 @@ namespace CFixer.Views
             Task.Delay(1000).Wait();
             await UpdateFeatureStatusFromSystem(); // Refresh the status after applying changes
 
-            MessageBox.Show("Features have been applied.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Properties.Resources.ResourceManager.GetString("ViveView.FeaturesApplied"), Properties.Resources.ResourceManager.GetString("Common.Done"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace CFixer.Views
 
             if (string.IsNullOrEmpty(viveToolPath))
             {
-                MessageBox.Show("ViVeTool not found. Please ensure it is installed in the plugins folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("ViveView.ViveToolNotFound"), Properties.Resources.ResourceManager.GetString("Common.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return statusMap;
             }
 
@@ -250,7 +250,7 @@ namespace CFixer.Views
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Failed to open link:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(string.Format(Properties.Resources.ResourceManager.GetString("ViveView.FailedToOpenLink"), ex.Message), Properties.Resources.ResourceManager.GetString("Common.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -271,10 +271,7 @@ namespace CFixer.Views
 
         private void linkPluginUsage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("This plugin uses ViVeTool to enable hidden Windows features.\n" +
-    "Please download ViVeTool (e.g. 'ViVeTool-v0.3.x-IntelAmd') from:\n" +
-    "https://github.com/thebookisclosed/ViVe/releases\n" +
-    "Extract it and place the contents into a subfolder inside the 'plugins' directory.\n\n");
+            MessageBox.Show(Properties.Resources.ResourceManager.GetString("ViveView.ViveToolUsage"));
         }
 
         private void btnApplyCustom_Click(object sender, EventArgs e)
@@ -283,7 +280,7 @@ namespace CFixer.Views
 
             if (string.IsNullOrWhiteSpace(input))
             {
-                MessageBox.Show("Please enter one or more feature IDs.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("ViveView.PleaseEnterFeatureIds"), Properties.Resources.ResourceManager.GetString("Common.InvalidInput"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -299,22 +296,21 @@ namespace CFixer.Views
                 }
                 else
                 {
-                    MessageBox.Show($"Invalid ID: '{part}'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(string.Format(Properties.Resources.ResourceManager.GetString("ViveView.InvalidId"), part), Properties.Resources.ResourceManager.GetString("Common.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
 
             if (idList.Count == 0)
             {
-                MessageBox.Show("No valid IDs found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("ViveView.NoValidIdsFound"), Properties.Resources.ResourceManager.GetString("Common.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Ask whether to enable or disable
             var result = MessageBox.Show(
-             $"Do you want to ENABLE these features?\n\n{string.Join(", ", idList)}\n\n" +
-             "Yes = Enable\nNo = Disable\nCancel = Abort",
-             "Confirm Action",
+             string.Format(Properties.Resources.ResourceManager.GetString("ViveView.ConfirmEnableText"), string.Join(", ", idList)),
+             Properties.Resources.ResourceManager.GetString("ViveView.ConfirmActionTitle"),
              MessageBoxButtons.YesNoCancel,
              MessageBoxIcon.Question);
 
@@ -324,7 +320,7 @@ namespace CFixer.Views
 
             ApplyFeature(idList, enable);
 
-            MessageBox.Show("Custom feature action sent to ViVeTool.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Properties.Resources.ResourceManager.GetString("ViveView.CustomFeatureActionSent"), Properties.Resources.ResourceManager.GetString("Common.Done"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

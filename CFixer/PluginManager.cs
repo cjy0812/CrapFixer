@@ -290,7 +290,7 @@ public static class PluginManager
             else
             {
                 Logger.Log($"⚠️ No Undo command found. Restore not possible.");
-                MessageBox.Show("Restore is not possible for this plugin.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("PluginManager.RestoreNotPossible"), Properties.Resources.ResourceManager.GetString("Common.Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
@@ -339,22 +339,16 @@ public static class PluginManager
     public static bool ShowPluginWarning(string pluginName)
     {
         var result = MessageBox.Show(
-            $"⚠️ WARNING: The plugin '{pluginName}' is an external script. Its execution is outside this app's responsibility and at your own risk.\n" +
-            "Proceed only if you trust the source of this plugin. Do you want to continue?",
-            "Plugin Activation Warning",
+            string.Format(Properties.Resources.ResourceManager.GetString("PluginManager.PluginActivationWarningText"), pluginName),
+            Properties.Resources.ResourceManager.GetString("PluginManager.PluginActivationWarningTitle"),
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Warning
         );
-
-        return result == DialogResult.Yes;
-    }
-
-    public static bool ShowHelp(TreeNode node)
     {
         string info = GetPluginHelpInfo(node);
         if (!string.IsNullOrEmpty(info))
         {
-            MessageBox.Show(info, $"Plugin Help: {node.Text}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(info, string.Format(Properties.Resources.ResourceManager.GetString("PluginManager.PluginHelpTitle"), node.Text), MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
         return false;

@@ -11,13 +11,19 @@ namespace Settings.Edge
         private const string valueName = "EdgeCollectionsEnabled";
         private const int recommendedValue = 0;
 
-        public override string ID() => "Disable Access to Collections feature";
+        public override string ID()
+        {
+            return L("ID", "Disable Access to Collections feature");
+        }
 
-        public override string Info() => "Enables users to access the Collections feature, allowing them to gather, organize, share, and export content more efficiently with Office integration";
+        public override string Info()
+        {
+            return L("Info", "Enables users to access the Collections feature, allowing them to gather, organize, share, and export content more efficiently with Office integration");
+        }
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override Task<bool> CheckFeature()

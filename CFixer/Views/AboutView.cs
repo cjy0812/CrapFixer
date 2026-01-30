@@ -45,7 +45,7 @@ namespace Views
 
             if (string.IsNullOrEmpty(amount) || string.IsNullOrEmpty(currency))
             {
-                MessageBox.Show("Please select an amount and a currency.");
+                MessageBox.Show(Properties.Resources.ResourceManager.GetString("AboutView.SelectAmountCurrency"));
                 return;
             }
 

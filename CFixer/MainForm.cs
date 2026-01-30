@@ -163,10 +163,8 @@ namespace CrapFixer
         private void btnRestore_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
-           "⚠️ This will restore all selected features to their original state.\n" +
-           "Changes made by previous configurations may be reverted.\n\n" +
-           "Are you sure you want to proceed?",
-           "Restore Selected Features",
+           Properties.Resources.ResourceManager.GetString("MainForm.RestoreConfirmationText"),
+           Properties.Resources.ResourceManager.GetString("MainForm.RestoreSelectedFeaturesTitle"),
            MessageBoxButtons.YesNo,
            MessageBoxIcon.Warning);
 

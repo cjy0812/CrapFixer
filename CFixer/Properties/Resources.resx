@@ -127,4 +127,259 @@
   <data name="AppIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\AppIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Ads.FileExlorerAds.ID" xml:space="preserve"><value>Disable File Explorer Ads</value></data>
+  <data name="Ads.FileExlorerAds.Info" xml:space="preserve"><value>This feature will disable ads in File Explorer.</value></data>
+  <data name="Ads.FileExlorerAds.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="UI.ShowOrHideMostUsedApps.ID" xml:space="preserve"><value>Hide Most used apps in start menu</value></data>
+  <data name="UI.ShowOrHideMostUsedApps.Info" xml:space="preserve"><value>This feature will hide Most used apps in start menu for all users</value></data>
+  <data name="UI.ShowOrHideMostUsedApps.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="UI.TaskbarAlignment.ID" xml:space="preserve"><value>Align Start button to left</value></data>
+  <data name="UI.TaskbarAlignment.Info" xml:space="preserve"><value>This feature will align the Start button to left</value></data>
+  <data name="UI.TaskbarAlignment.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Suggested Value: {2} (Left – feels like home if you're coming from Windows 10)</value></data>
+
+  <data name="System.VerboseStatus.ID" xml:space="preserve"><value>Enable Verbose Logon status messages</value></data>
+  <data name="System.VerboseStatus.Info" xml:space="preserve"><value>This method allows you to see what processes are hanging when shutting down and turning on the machine.</value></data>
+  <data name="System.VerboseStatus.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Gaming.VisualFX.Info" xml:space="preserve"><value>This feature will disable visual effects in Windows.</value></data>
+  <data name="Gaming.VisualFX.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Gaming.PowerThrotteling.Info" xml:space="preserve"><value>This feature will disable Power Throttling.</value></data>
+
+  <data name="UI.LockScreen.Info" xml:space="preserve"><value>This feature will disable the personalized lock screen.</value></data>
+  <data name="UI.LockScreen.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="UI.FullContextMenus.Info" xml:space="preserve"><value>This feature will enable full context menus</value></data>
+  <data name="UI.FullContextMenus.GetFeatureDetails" xml:space="preserve"><value>{0}</value></data>
+
+  <data name="UI.SearchBoxSuggestions.Info" xml:space="preserve"><value>This feature disables Bing search and web suggestions in the Windows Start Menu.</value></data>
+  <data name="UI.SearchBoxSuggestions.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="UI.SearchboxTaskbarMode.Info" xml:space="preserve"><value>This feature will hide search box on taskbar</value></data>
+  <data name="UI.SearchboxTaskbarMode.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="UI.ShowTaskViewButton.Info" xml:space="preserve"><value>This feature will hide the Task view button on taskbar</value></data>
+  <data name="UI.ShowTaskViewButton.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended: {2} (Task View off – cleaner taskbar, unless you use it often)</value></data>
+
+  <data name="UI.SnapAssistFlyout.Info" xml:space="preserve"><value>This feature disables the Snap Assist flyout, which appears when you snap a window.</value></data>
+  <data name="UI.SnapAssistFlyout.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Privacy.Telemetry.ID" xml:space="preserve"><value>Turn off Telemetry data collection</value></data>
+
+  <data name="Privacy.PrivacyExperience.ID" xml:space="preserve"><value>Disable Privacy Settings Experience at sign-in</value></data>
+  <data name="Privacy.PrivacyExperience.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Privacy.LocationTracking.ID" xml:space="preserve"><value>Disable location tracking</value></data>
+  <data name="Privacy.LocationTracking.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="System.SpeedUpShutdown.ID" xml:space="preserve"><value>Speed up shutdown</value></data>
+  <data name="System.SpeedUpShutdown.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2} ms</value></data>
+
+  <data name="System.NetworkThrottling.ID" xml:space="preserve"><value>Disable Network Throttling</value></data>
+  <data name="System.NetworkThrottling.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: 0xFFFFFFFF (decimal: {2})</value></data>
+
+  <data name="UI.AppDarkMode.ID" xml:space="preserve"><value>Enable Dark Mode for Apps</value></data>
+  <data name="UI.AppDarkMode.Info" xml:space="preserve"><value>This feature enables Dark Mode for apps in Windows 11.</value></data>
+  <data name="UI.AppDarkMode.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended: {2} (Dark mode – preferred for a modern look, but up to you)</value></data>
+
+  <data name="UI.SystemDarkMode.ID" xml:space="preserve"><value>Enable Dark Mode for System</value></data>
+  <data name="UI.SystemDarkMode.Info" xml:space="preserve"><value>This feature enables Dark Mode for Windows system UI (e.g., taskbar, start menu).</value></data>
+  <data name="UI.SystemDarkMode.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Suggestion: {2} (Dark mode – easy on the eyes, but totally your call)</value></data>
+
+  <data name="UI.StartLayout.ID" xml:space="preserve"><value>Pin more Apps on start menu</value></data>
+  <data name="UI.StartLayout.Info" xml:space="preserve"><value>This feature will allow pinning more Apps on start menu</value></data>
+  <data name="UI.StartLayout.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="UI.Transparency.ID" xml:space="preserve"><value>Disable Transparency Effects</value></data>
+  <data name="UI.Transparency.Info" xml:space="preserve"><value>This feature disables transparency effects for Start menu, taskbar, and other surfaces.</value></data>
+  <data name="UI.Transparency.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Suggestion: {2} (No transparency – smoother performance, still stylish)</value></data>
+
+  <data name="UI.BingSearch.ID" xml:space="preserve"><value>Disable Bing Search</value></data>
+  <data name="UI.BingSearch.Info" xml:space="preserve"><value>This feature disables Bing integration in Windows Search.</value></data>
+  <data name="UI.BingSearch.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="System.TaskbarEndTask.ID" xml:space="preserve"><value>Enable End Task</value></data>
+  <data name="System.TaskbarEndTask.Info" xml:space="preserve"><value>Adds 'End Task' to the Windows 11 taskbar context menu, allowing you to directly kill unresponsive apps.</value></data>
+  <data name="System.TaskbarEndTask.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="System.SystemResponsiveness.ID" xml:space="preserve"><value>Optimize System Responsiveness</value></data>
+  <data name="System.SystemResponsiveness.Info" xml:space="preserve"><value>Enhances system responsiveness by prioritizing CPU resources for foreground tasks, improving performance during active use.</value></data>
+  <data name="System.SystemResponsiveness.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Privacy.ActivityHistory.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="System.MenuShowDelay.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: &quot;{2}&quot; (faster menu response)</value></data>
+
+  <data name="System.BSODDetails.GetFeatureDetails" xml:space="preserve"><value>{0} | Values: {1}, {2} | Recommended Value: {3}</value></data>
+
+  <data name="Gaming.GameDVR.GetFeatureDetails" xml:space="preserve"><value>{0} |Value: {1} | {2} | {3} | {4}</value></data>
+
+  <data name="Edge.UserFeedback.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Edge.DefautBrowserSetting.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Edge.TabPageQuickLinks.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Ads.FinishSetupAds.ID" xml:space="preserve"><value>Disable Finish Setup Ads</value></data>
+  <data name="Ads.FinishSetupAds.Info" xml:space="preserve"><value>This feature will disable the "Lets finish setting up your device" and other advertising.</value></data>
+  <data name="Ads.FinishSetupAds.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Edge.StartupBoost.ID" xml:space="preserve"><value>Disable Start Boost</value></data>
+  <data name="Edge.StartupBoost.Info" xml:space="preserve"><value>Enables Microsoft Edge processes to initialize at operating system startup and restart in the background after the last browser window has been closed</value></data>
+  <data name="Edge.StartupBoost.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Edge.UserFeedback.ID" xml:space="preserve"><value>Don't Submit user feedback option</value></data>
+  <data name="Edge.UserFeedback.Info" xml:space="preserve"><value>Allow the submission of feedback, suggestions, or customer surveys, as well as reporting issues with the browser</value></data>
+
+  <data name="Edge.TabPageQuickLinks.ID" xml:space="preserve"><value>Don't Show Quick links in new tab page</value></data>
+  <data name="Edge.TabPageQuickLinks.Info" xml:space="preserve"><value>By default, when you open a new tab, you see a Bing search bar, Bing image of the day set as the page background. For supported websites, Quick Links on the New Tab page can display recent updates right in the tile</value></data>
+
+  <data name="Edge.ImportOnEachLaunch.ID" xml:space="preserve"><value>Don't Allow to Import of data from other browsers on each launch</value></data>
+  <data name="Edge.ImportOnEachLaunch.Info" xml:space="preserve"><value>Allow import of data from other browsers on each Microsoft Edge launch</value></data>
+  <data name="Edge.ImportOnEachLaunch.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Edge.HubsSidebar.ID" xml:space="preserve"><value>Disable Copilot Symbol in Edge</value></data>
+  <data name="Edge.HubsSidebar.Info" xml:space="preserve"><value>This feature will disable Copilot in Microsoft Edge.</value></data>
+  <data name="Edge.HubsSidebar.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Edge.GamerMode.ID" xml:space="preserve"><value>Disable Gamer Mode</value></data>
+  <data name="Edge.GamerMode.Info" xml:space="preserve"><value>Microsoft Edge Gamer Mode allows gamers to personalize their browser with gaming themes and gives them the option of enabling Efficiency Mode for PC gaming, the Gaming feed on new tabs, sidebar apps for gamers, and more</value></data>
+  <data name="Edge.GamerMode.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Edge.FirstRunExperience.ID" xml:space="preserve"><value>Don't Show First Run Experience</value></data>
+  <data name="Edge.FirstRunExperience.Info" xml:space="preserve"><value>Hide home screen and 'Getting Started' on initial launch (from version 80 onwards)</value></data>
+  <data name="Edge.FirstRunExperience.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Edge.EdgeCollections.ID" xml:space="preserve"><value>Disable Access to Collections feature</value></data>
+  <data name="Edge.EdgeCollections.Info" xml:space="preserve"><value>Enables users to access the Collections feature, allowing them to gather, organize, share, and export content more efficiently with Office integration</value></data>
+  <data name="Edge.EdgeCollections.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Issues.WingetUpgrade.ID" xml:space="preserve"><value>Winget App Updates</value></data>
+  <data name="Issues.WingetUpgrade.Info" xml:space="preserve"><value>Automatically searches for available app updates using the Windows package manager 'winget' and installs them in a new Windows Terminal window. It runs 'winget upgrade --include-unknown' to list all available updates, including manually installed apps, and then 'winget upgrade --all --include-unknown' to install them. No manual interaction is required.</value></data>
+  <data name="Issues.WingetUpgrade.GetFeatureDetails" xml:space="preserve"><value>winget upgrade --include-unknown</value></data>
+
+  <data name="Issues.BasicCleanup.ID" xml:space="preserve"><value>Basic Disk Cleanup</value></data>
+  <data name="Issues.BasicCleanup.Info" xml:space="preserve"><value>Deletes all temporary files from the user's Temp folder. Then, the built-in Disk Cleanup utility (cleanmgr) is run.</value></data>
+
+  <data name="Ads.TailoredExperiences.Info" xml:space="preserve"><value>Tailored Experiences allows Microsoft to get information from you to deliver personalized tips, ads, and recommendations. Many people would call this telemetry, or even spying.</value></data>
+
+  <data name="Ads.StartmenuAds.ID" xml:space="preserve"><value>Disable Start menu Ads</value></data>
+  <data name="Ads.StartmenuAds.Info" xml:space="preserve"><value>This feature will disable ads in the start menu.</value></data>
+
+  <data name="AI.Recall.ID" xml:space="preserve"><value>Turn off Recall in Windows 11</value></data>
+  <data name="AI.Recall.Info" xml:space="preserve"><value>This will remove Recall from Windows 11 24H2</value></data>
+  <data name="AI.Recall.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended: {2} (Recall off – protect your privacy, prevent AI from accessing personal data)</value></data>
+
+  <data name="AI.CopilotTaskbar.ID" xml:space="preserve"><value>Don't Show Copilot in Taskbar</value></data>
+  <data name="AI.CopilotTaskbar.Info" xml:space="preserve"><value>This feature will disable Copilot in Taskbar.</value></data>
+  <data name="AI.CopilotTaskbar.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="AI.AskCopilot.ID" xml:space="preserve"><value>Remove Ask Copilot from context menu</value></data>
+  <data name="AI.AskCopilot.Info" xml:space="preserve"><value>Blocks the 'Ask Copilot' entry in the Windows 11 context menu by disabling its Shell Extension.</value></data>
+  <data name="AI.AskCopilot.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} = &quot;{2}&quot; | Blocks Copilot context menu entry.</value></data>
+
+  <data name="AI.ClickToDo.ID" xml:space="preserve"><value>Disable Click to Do (Only Copilot+ PCs)</value></data>
+  <data name="AI.ClickToDo.Info" xml:space="preserve"><value>Disables Click to Do entirely, including its context menu entry which uses on-device AI to suggest actions based on screen content. Only available on Copilot+ PCs with Windows 11 24H2 or newer.</value></data>
+  <data name="AI.ClickToDo.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Set to: {2} (disables Click to Do, removing it from context menus). 
+Note: Only Copilot+ PCs are supported.</value></data>
+
+  <data name="Gaming.PowerThrotteling.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Issues.BasicCleanup.GetFeatureDetails.Ok" xml:space="preserve"><value>Temp folder size: {0} MB (including cleanmgr /sagerun:1 in the next run)</value></data>
+  <data name="Issues.BasicCleanup.GetFeatureDetails.Error" xml:space="preserve"><value>Temp folder not accessible: {0}</value></data>
+
+  <data name="Ads.PersonalizedAds.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Ads.TipsAndSuggestions.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Ads.StartmenuAds.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Ads.WelcomeExperienceAds.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Ads.SettingsAds.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} + {2} + {3} | Recommended Value: {4}</value></data>
+
+  <data name="Ads.LockScreenAds.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+
+  <data name="Privacy.Telemetry.GetFeatureDetails" xml:space="preserve"><value>{0} | {1}</value></data>
+
+  <data name="Edge.DefaultTopSites.GetFeatureDetails" xml:space="preserve"><value>{0} | Value: {1} | Recommended Value: {2}</value></data>
+  <data name="Common.Error" xml:space="preserve"><value>Error</value></data>
+  <data name="Common.Done" xml:space="preserve"><value>Done</value></data>
+  <data name="Common.InvalidInput" xml:space="preserve"><value>Invalid Input</value></data>
+  <data name="Common.Information" xml:space="preserve"><value>Information</value></data>
+
+  <data name="ViveView.ViveToolNotFound" xml:space="preserve"><value>ViVeTool not found. Please ensure it is installed in the plugins folder.</value></data>
+  <data name="ViveView.FeaturesApplied" xml:space="preserve"><value>Features have been applied.</value></data>
+  <data name="ViveView.ViveToolUsage" xml:space="preserve"><value>This plugin uses ViVeTool to enable hidden Windows features.
+Please download ViVeTool (e.g. 'ViVeTool-v0.3.x-IntelAmd') from:
+https://github.com/thebookisclosed/ViVe/releases
+Extract it and place the contents into a subfolder inside the 'plugins' directory.
+
+</value></data>
+  <data name="ViveView.PleaseEnterFeatureIds" xml:space="preserve"><value>Please enter one or more feature IDs.</value></data>
+  <data name="ViveView.InvalidId" xml:space="preserve"><value>Invalid ID: '{0}'</value></data>
+  <data name="ViveView.NoValidIdsFound" xml:space="preserve"><value>No valid IDs found.</value></data>
+  <data name="ViveView.ConfirmEnableText" xml:space="preserve"><value>Do you want to ENABLE these features?
+
+{0}
+
+Yes = Enable
+No = Disable
+Cancel = Abort</value></data>
+  <data name="ViveView.ConfirmActionTitle" xml:space="preserve"><value>Confirm Action</value></data>
+  <data name="ViveView.CustomFeatureActionSent" xml:space="preserve"><value>Custom feature action sent to ViVeTool.</value></data>
+  <data name="ViveView.FailedToOpenLink" xml:space="preserve"><value>Failed to open link:
+{0}</value></data>
+
+  <data name="PluginsView.ErrorLoadingPlugins" xml:space="preserve"><value>Error loading plugins: {0}</value></data>
+  <data name="PluginsView.PleaseSelectPluginsToDownload" xml:space="preserve"><value>Please check one or more plugins to download.</value></data>
+  <data name="PluginsView.FailedToDownload" xml:space="preserve"><value>Failed to download {0}: {1}</value></data>
+  <data name="PluginsView.AllPluginsUpdated" xml:space="preserve"><value>All plugins updated.</value></data>
+  <data name="PluginsView.NoPluginsSelected" xml:space="preserve"><value>No plugins selected.</value></data>
+  <data name="PluginsView.SelectedPluginsRemoved" xml:space="preserve"><value>Selected plugins removed.</value></data>
+  <data name="PluginsView.PleaseSelectPluginFirst" xml:space="preserve"><value>Please select a plugin first.</value></data>
+  <data name="PluginsView.PluginFileNotFound" xml:space="preserve"><value>Plugin file not found. Please install the plugin first.</value></data>
+  <data name="PluginsView.CouldNotOpenPlugin" xml:space="preserve"><value>Could not open plugin: {0}</value></data>
+  <data name="PluginsView.InfoTitle" xml:space="preserve"><value>Info: {0}</value></data>
+
+  <data name="SettingsView.IconsPackPrompt" xml:space="preserve"><value>By default, buttons have no icons to reduce app size. Enable this to download and display navigation icons.
+Would you like to install it now?</value></data>
+  <data name="SettingsView.IconsPackDetectedTitle" xml:space="preserve"><value>Icons Pack Detected</value></data>
+  <data name="SettingsView.IconsInstalled" xml:space="preserve"><value>All icons have been successfully installed in the 'icons' folder!
+
+💖 Love CrapFixer? Consider supporting me with a small donation to keep this tool alive and improving!</value></data>
+  <data name="SettingsView.IconsInstalledTitle" xml:space="preserve"><value>Icons Installed</value></data>
+  <data name="SettingsView.IconsDownloadError" xml:space="preserve"><value>❌ An error occurred while downloading the icons:
+{0}</value></data>
+  <data name="SettingsView.DownloadFailedTitle" xml:space="preserve"><value>Download Failed</value></data>
+
+  <data name="AboutView.SelectAmountCurrency" xml:space="preserve"><value>Please select an amount and a currency.</value></data>
+
+  <data name="FeatureManager.NoAdditionalInfo" xml:space="preserve"><value>No additional information available.</value></data>
+  <data name="FeatureManager.HelpTitle" xml:space="preserve"><value>Help: {0}</value></data>
+  <data name="FeatureManager.SearchOnlinePrompt" xml:space="preserve"><value>Would you like to search online for more information about this feature?</value></data>
+  <data name="FeatureManager.OnlineHelpTitle" xml:space="preserve"><value>Online Help</value></data>
+  <data name="FeatureManager.NoFeatureOrPluginSelected" xml:space="preserve"><value>⚠️ No feature or plugin selected, or help info unavailable.</value></data>
+  <data name="FeatureManager.HelpSimple" xml:space="preserve"><value>Help</value></data>
+
+  <data name="PluginManager.RestoreNotPossible" xml:space="preserve"><value>Restore is not possible for this plugin.</value></data>
+  <data name="PluginManager.PluginActivationWarningText" xml:space="preserve"><value>⚠️ WARNING: The plugin '{0}' is an external script. Its execution is outside this app's responsibility and at your own risk.
+Proceed only if you trust the source of this plugin. Do you want to continue?</value></data>
+  <data name="PluginManager.PluginActivationWarningTitle" xml:space="preserve"><value>Plugin Activation Warning</value></data>
+  <data name="PluginManager.PluginHelpTitle" xml:space="preserve"><value>Plugin Help: {0}</value></data>
+
+  <data name="MainForm.RestoreConfirmationText" xml:space="preserve"><value>⚠️ This will restore all selected features to their original state.
+Changes made by previous configurations may be reverted.
+
+Are you sure you want to proceed?</value></data>
+  <data name="MainForm.RestoreSelectedFeaturesTitle" xml:space="preserve"><value>Restore Selected Features</value></data>
+
+  <data name="LogActions.LogCopied" xml:space="preserve"><value>The log has been copied to the clipboard.
+Click "Paste log from clipboard" on the log analyzer page, or simply press CTRL+V,
+to insert it into the analyzer.</value></data>
+  <data name="LogActions.LogCopiedTitle" xml:space="preserve"><value>Log copied</value></data>
+  <data name="OSHelper.OsInfoUnavailable" xml:space="preserve"><value>OS info unavailable: {0}</value></data>
+  <data name="OSHelper.OsNotSupported" xml:space="preserve"><value>OS not supported</value></data>
 </root>

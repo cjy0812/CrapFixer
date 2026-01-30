@@ -13,12 +13,18 @@ namespace Settings.Edge
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
-        public override string ID() => "Disable Microsoft Edge as default browser";
+        public override string ID()
+        {
+            return L("ID", "Disable Microsoft Edge as default browser");
+        }
 
-        public override string Info() => "Force Edge to stop asking to change default browser";
+        public override string Info()
+        {
+            return L("Info", "Force Edge to stop asking to change default browser");
+        }
 
         public override Task<bool> CheckFeature()
         {

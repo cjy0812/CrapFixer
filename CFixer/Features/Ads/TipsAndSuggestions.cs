@@ -11,13 +11,19 @@ namespace Settings.Ads
         private const string valueName = "SubscribedContent-338389Enabled";
         private const int recommendedValue = 0;
 
-        public override string ID() => "Disable General Tips and Ads";
+        public override string ID()
+        {
+            return L("ID", "Disable General Tips and Ads");
+        }
 
-        public override string Info() => "This feature will disable general tips and ads.";
+        public override string Info()
+        {
+            return L("Info", "This feature will disable general tips and ads.");
+        }
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override Task<bool> CheckFeature()

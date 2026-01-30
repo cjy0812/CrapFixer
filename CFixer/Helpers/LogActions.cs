@@ -40,10 +40,8 @@ public sealed class LogActions
         Process.Start(baseUrl);
 
         MessageBox.Show(
-            "The log has been copied to the clipboard.\n" +
-            "Click “Paste log from clipboard” on the log analyzer page, or simply press CTRL+V,\n" +
-            "to insert it into the analyzer.",
-            "Log copied",
+            Properties.Resources.ResourceManager.GetString("LogActions.LogCopied"),
+            Properties.Resources.ResourceManager.GetString("LogActions.LogCopiedTitle"),
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
     }

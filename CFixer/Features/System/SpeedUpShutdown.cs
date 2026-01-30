@@ -13,17 +13,17 @@ namespace Settings.System
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue} ms";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2} ms", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Speed Up Shutdown Time";
+            return L("ID", "Speed up shutdown");
         }
 
         public override string Info()
         {
-            return "This feature reduces the WaitToKillServiceTimeout value, which speeds up the shutdown process by reducing the time Windows waits for services to stop.";
+            return L("Info", "This feature reduces the WaitToKillServiceTimeout value, which speeds up the shutdown process by reducing the time Windows waits for services to stop.");
         }
 
         public override Task<bool> CheckFeature()

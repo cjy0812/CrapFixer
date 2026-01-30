@@ -13,17 +13,17 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended: {recommendedValue} (Task View off – cleaner taskbar, unless you use it often)";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended: {2} (Task View off – cleaner taskbar, unless you use it often)", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Hide Task view button on taskbar";
+            return L("ID", "Hide Task view button on taskbar");
         }
 
         public override string Info()
         {
-            return "This feature will hide the Task view button on taskbar";
+            return L("Info", "This feature will hide the Task view button on taskbar");
         }
 
         public override Task<bool> CheckFeature()

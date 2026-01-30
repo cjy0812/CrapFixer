@@ -13,17 +13,17 @@ namespace Settings.Privacy
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
         public override string ID()
         {
-            return "Disable activity history";
+            return L("ID", "Disable activity history");
         }
 
         public override string Info()
         {
-            return "Disable activity history (prevents Windows from tracking and storing your activity)";
+            return L("Info", "Disable activity history (prevents Windows from tracking and storing your activity)");
         }
 
         public override Task<bool> CheckFeature()

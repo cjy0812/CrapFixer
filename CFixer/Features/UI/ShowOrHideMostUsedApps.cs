@@ -13,17 +13,17 @@ namespace Settings.Personalization
 
         public override string GetFeatureDetails()
         {
-            return $"{keyName} | Value: {valueName} | Recommended Value: {recommendedValue}";
+            return L("GetFeatureDetails", "{0} | Value: {1} | Recommended Value: {2}", keyName, valueName, recommendedValue);
         }
 
-        public override string ID()
+n        public override string ID()
         {
-            return "Hide Most used apps in start menu";
+            return L("ID", "Hide Most used apps in start menu");
         }
 
         public override string Info()
         {
-            return "This feature will hide Most used apps in start menu for all users";
+            return L("Info", "This feature will hide Most used apps in start menu for all users");
         }
 
         public override Task<bool> CheckFeature()
