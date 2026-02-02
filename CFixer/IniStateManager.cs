@@ -205,6 +205,74 @@ public static class IniStateManager
         }
     }
 
+    public static void SaveSetting(string sectionName, string key, string value)
+    {
+        lock (FileLock)
+        {
+            var lines = File.Exists(IniPath) ? File.ReadAllLines(IniPath).ToList() : new List<string>();
+
+            var sectionIndex = lines.FindIndex(l => l.Trim().Equals($"[{sectionName}]", StringComparison.OrdinalIgnoreCase));
+            if (sectionIndex < 0)
+            {
+                lines.Add($"[{sectionName}]");
+                lines.Add($"{key}={value}");
+                File.WriteAllLines(IniPath, lines);
+                return;
+            }
+
+            var insertIndex = sectionIndex + 1;
+            var nextSectionIndex = insertIndex;
+            while (nextSectionIndex < lines.Count && !lines[nextSectionIndex].TrimStart().StartsWith("["))
+            {
+                var line = lines[nextSectionIndex];
+                var parts = line.Split(new[] { '=' }, 2);
+                if (parts.Length == 2 && parts[0].Trim().Equals(key, StringComparison.OrdinalIgnoreCase))
+                {
+                    lines[nextSectionIndex] = $"{key}={value}";
+                    File.WriteAllLines(IniPath, lines);
+                    return;
+                }
+
+                nextSectionIndex++;
+            }
+
+            lines.Insert(insertIndex, $"{key}={value}");
+            File.WriteAllLines(IniPath, lines);
+        }
+    }
+
+    public static string LoadSetting(string sectionName, string key)
+    {
+        if (!File.Exists(IniPath)) return null;
+
+        var lines = File.ReadAllLines(IniPath);
+        bool inTargetSection = false;
+
+        foreach (var line in lines)
+        {
+            var trimmed = line.Trim();
+            if (string.IsNullOrWhiteSpace(trimmed)) continue;
+
+            if (trimmed.StartsWith("[") && trimmed.EndsWith("]"))
+            {
+                inTargetSection = trimmed.Equals($"[{sectionName}]", StringComparison.OrdinalIgnoreCase);
+                continue;
+            }
+
+            if (!inTargetSection) continue;
+
+            var parts = trimmed.Split(new[] { '=' }, 2);
+            if (parts.Length != 2) continue;
+
+            var lineKey = parts[0].Trim();
+            if (!lineKey.Equals(key, StringComparison.OrdinalIgnoreCase)) continue;
+
+            return parts[1].Trim();
+        }
+
+        return null;
+    }
+
     // Loads individual settings for a specific view (e.g. checkboxes)
     public static Dictionary<string, bool> LoadViewSettings(string viewName)
     {

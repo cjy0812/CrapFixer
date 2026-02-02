@@ -393,6 +393,12 @@ to insert it into the analyzer.</value></data>
   <data name="SettingsView.checkBox2.Text" xml:space="preserve"><value>Activate Plugins for PowerShell Tooling (Super Plugins)</value></data>
   <data name="SettingsView.button1.Text" xml:space="preserve"><value>Basic settings</value></data>
   <data name="SettingsView.checkInstallIcons.Text" xml:space="preserve"><value>Download optional icons to enhance navigation UI</value></data>
+  <data name="SettingsView.labelLanguage.Text" xml:space="preserve"><value>Language</value></data>
+  <data name="SettingsView.Language.System" xml:space="preserve"><value>System default</value></data>
+  <data name="SettingsView.Language.English" xml:space="preserve"><value>English (United States)</value></data>
+  <data name="SettingsView.Language.ChineseSimplified" xml:space="preserve"><value>中文（简体）</value></data>
+  <data name="SettingsView.LanguageRestartPrompt" xml:space="preserve"><value>Restart CrapFixer now to apply the new language?</value></data>
+  <data name="SettingsView.LanguageRestartTitle" xml:space="preserve"><value>Restart Required</value></data>
 
   <data name="PluginsView.btnPluginInstall.Text" xml:space="preserve"><value>Install</value></data>
   <data name="PluginsView.btnDescription.Text" xml:space="preserve"><value>Plugins Gallery (App restart needed after install)</value></data>

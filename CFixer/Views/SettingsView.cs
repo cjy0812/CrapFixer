@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CFixer;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,9 +10,30 @@ namespace CFixer.Views
 {
     public partial class SettingsView : UserControl
     {
+        private bool _isLoading;
+        private List<LanguageOption> _languageOptions;
+
+        private sealed class LanguageOption
+        {
+            public LanguageOption(string displayName, string cultureName)
+            {
+                DisplayName = displayName;
+                CultureName = cultureName;
+            }
+
+            public string DisplayName { get; }
+            public string CultureName { get; }
+
+            public override string ToString()
+            {
+                return DisplayName;
+            }
+        }
+
         public SettingsView()
         {
             InitializeComponent();
+            InitializeLanguageOptions();
             LoadSettings();
             CheckIfIconsInstalled();
         }
@@ -27,6 +49,11 @@ namespace CFixer.Views
     };
 
             IniStateManager.SaveViewSettings("SETTINGS", settings);
+
+            if (comboLanguage.SelectedItem is LanguageOption option)
+            {
+                LocalizationManager.SaveLanguage(option.CultureName);
+            }
         }
 
         /// <summary>
@@ -34,8 +61,16 @@ namespace CFixer.Views
         /// </summary>
         public void LoadSettings()
         {
+            _isLoading = true;
             var settings = IniStateManager.LoadViewSettings("SETTINGS");
             checkSaveToINI.Checked = settings.GetValueOrDefault(nameof(checkSaveToINI), false);
+
+            var savedLanguage = LocalizationManager.GetSavedLanguage() ?? string.Empty;
+            var selectedOption = _languageOptions.FirstOrDefault(option =>
+                string.Equals(option.CultureName, savedLanguage, StringComparison.OrdinalIgnoreCase));
+
+            comboLanguage.SelectedItem = selectedOption ?? _languageOptions.FirstOrDefault();
+            _isLoading = false;
         }
 
         private void SettingsView_Leave(object sender, EventArgs e)
@@ -105,6 +140,41 @@ namespace CFixer.Views
                         Properties.Resources.ResourceManager.GetString("SettingsView.DownloadFailedTitle"),
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void InitializeLanguageOptions()
+        {
+            _languageOptions = new List<LanguageOption>
+            {
+                new LanguageOption(Properties.Resources.ResourceManager.GetString("SettingsView.Language.System"), string.Empty),
+                new LanguageOption(Properties.Resources.ResourceManager.GetString("SettingsView.Language.English"), "en-US"),
+                new LanguageOption(Properties.Resources.ResourceManager.GetString("SettingsView.Language.ChineseSimplified"), "zh-CN")
+            };
+
+            comboLanguage.Items.Clear();
+            comboLanguage.Items.AddRange(_languageOptions.Cast<object>().ToArray());
+        }
+
+        private void comboLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_isLoading) return;
+
+            if (comboLanguage.SelectedItem is LanguageOption option)
+            {
+                LocalizationManager.SaveLanguage(option.CultureName);
+                LocalizationManager.ApplyLanguage(option.CultureName);
+
+                var result = MessageBox.Show(
+                    Properties.Resources.ResourceManager.GetString("SettingsView.LanguageRestartPrompt"),
+                    Properties.Resources.ResourceManager.GetString("SettingsView.LanguageRestartTitle"),
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
+
+                if (result == DialogResult.Yes)
+                {
+                    Application.Restart();
                 }
             }
         }

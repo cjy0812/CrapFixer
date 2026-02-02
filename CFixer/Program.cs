@@ -14,6 +14,7 @@ namespace CrapFixer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            LocalizationManager.ApplySavedLanguage();
             Application.Run(new MainForm());
         }
 
